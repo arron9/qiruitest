@@ -14,5 +14,6 @@ Route::group([
     $router->get('/news', 'NewsController@index');
     $router->get('/news/create', 'NewsController@create');
     $router->post('/news/create', 'NewsController@create');
+    $router->get('/news/{id}/edit', 'NewsController@edit');
 
 });
