@@ -312,15 +312,15 @@ UNLOCK TABLES;
 -- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
+CREATE TABLE `categories` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `pid` varchar(12) NOT NULL COMMENT '父类id',
-  `name` varchar(64) NOT NULL COMMENT '名称',
-  `weight` varchar(256) NOT NULL COMMENT '权重',
-  `status` tinyint(1) NOT NULL COMMENT '状态，0正常;9删除; -1禁用;',
+  `pid` int(10) NOT NULL DEFAULT 0 COMMENT '父类id',
+  `name` varchar(64) NOT NULL DEFAULT '' COMMENT '名称',
+  `weight` int(10) NOT NULL DEFAULT 0 COMMENT '权重',
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态，0正常;9删除; -1禁用;',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

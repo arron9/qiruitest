@@ -18,12 +18,19 @@
  *
  */
 
-Encore\Admin\Form::forget(['map', 'editor']);
+// Encore\Admin\Form::forget(['map', 'editor']);
+// Encore\Admin\Form::forget(['editor']);
 
 use Encore\Admin\Facades\Admin;
+use App\Admin\Extensions\WangEditor;
+use App\Admin\Extensions\Form\CKEditor;
+use Encore\Admin\Form;
 
 Admin::navbar(function (\Encore\Admin\Widgets\Navbar $navbar) {
 //    $navbar->left(view('admin/header-bar'));
 //    $navbar->right(new \App\Admin\Extensions\Nav\Links());
 });
+
+Form::extend('editor', WangEditor::class);
+Form::extend('ckeditor', CKEditor::class);
 

@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Category;
 use Encore\Admin\Grid;
 use Encore\Admin\Controllers\Dashboard;
@@ -20,18 +21,24 @@ class CategoryController extends Controller
         $grid = Admin::grid(Category::class, function(Grid $grid) {
 
             $grid->id('id')->sortable();
-            $grid->column('pid', '栏目父类');
+
+            $pids = array_merge(['顶级目录'],$this->getCategories());
+            $grid->pid('所属栏目')->display(function($pid) use($pids) {
+                return $pids[$pid];
+            });
+
             $grid->column('name', '名称');
+
             $grid->status('状态')->display(function ($status) {
                 switch ($status) {
-                    case -1:
+                    case 1:
                         $text = '禁用';
                         break;
                     case 9:
                         $text = '删除';
                         break;
                     default:
-                        $text = '正常';
+                        $text = '启用';
                         break;
                 }
 
@@ -57,10 +64,30 @@ class CategoryController extends Controller
         });
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->isMethod('post')) {
+            $name   = $request->input('name');
+            $pid    = intval($request->input('pid'));
+            $status = $request->input('status') == 'on'? 0: 1;
+            $weight = intval($request->input('weight'));
+
+            $date = date('Y-m-d H:i:s');
+
+            $category = new Category;
+            $category->name = $name;
+            $category->pid = $pid;
+            $category->status = $status;
+            $category->weight = $weight;
+            $category->created_at = $date;
+            $category->updated_at = $date;
+
+            $category->save();
+        }  
+
         $grid = Admin::form(Category::class, function(Form $form){
 
+            
             // 显示记录id
             $form->display('id', 'ID');
 
@@ -68,24 +95,23 @@ class CategoryController extends Controller
             $form->text('name', '栏目名称');
 
             $directors = [
-                'John'  => 1,
-                'Smith' => 2,
-                'Kate'  => 3,
+                '0'  => '顶级目录',
             ];
+
+            $directors = array_merge($directors, $this->getCategories());
 
             $form->select('pid', '所属栏目')->options($directors);
 
-            // 添加describe的textarea输入框
-            $form->textarea('describe', '简介');
 
             // 数字输入框
-            $form->number('rate', '打分');
+            $form->number('weight', '权重');
 
-            // 添加开关操作
-            $form->switch('released', '发布？');
+            $states = [
+                'on'  => ['value' => 0, 'text' => '启用', 'color' => 'success'],
+                'off' => ['value' => 1, 'text' => '禁用', 'color' => 'danger'],
+            ];
 
-            // 添加日期时间选择框
-            $form->dateTime('release_at', '发布时间');
+            $form->switch('status', '状态')->states($states);
 
             // 两个时间显示
             $form->display('created_at', '创建时间');
@@ -102,48 +128,65 @@ class CategoryController extends Controller
                 // 添加一个按钮, 参数可以是字符串, 或者实现了Renderable或Htmlable接口的对象实例
             });
 
-            $form->setAction('');
+            $form->setAction('/admin/category/create');
         });
 
         return Admin::content(function (Content $content) use($grid) {
-            $content->description('添加新闻');
+            $content->description('添加栏目');
             $content->row($grid);
         });
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $grid = Admin::form(Movie::class, function(Form $form) use($id) {
-            $movieInfo = Movie::find($id);
-            // 显示记录id
-            $form->display('id', 'ID');
+        if ($request->isMethod('post')) {
+            $name   = $request->input('name');
+            $pid    = intval($request->input('pid'));
+            $status = $request->input('status') == 'on'? 0: 1;
+            $weight = intval($request->input('weight'));
 
-            // 添加text类型的input框
-            $form->text('title', '电影标题')->value($movieInfo->title);
-
-            $directors = [
-                'John'  => 1,
-                'Smith' => 2,
-                'Kate'  => 3,
+            $date = date('Y-m-d H:i:s');
+            $data = [
+                'name' => $name,
+                'pid' => $pid,
+                'status' => $status,
+                'weight' => $weight,
+                'created_at' => $date,
+                'updated_at' => $date,
             ];
 
-            $form->select('director', '导演')->options($directors)->value($movieInfo->director);;
+            Category::where('id', $id)
+                ->update($data);
+        } 
 
-            // 添加describe的textarea输入框
-            $form->textarea('describe', '简介')->value($movieInfo->describe);
+        $grid = Admin::form(Category::class, function(Form $form) use($id) {
+            $category = Category::find($id);
+            // 显示记录id
+            $form->display('id', 'ID')->value($category->id);
+
+            $form->text('name', '栏目名称')->value($category->name);
+
+            $directors = [
+                '0'  => '顶级目录',
+            ];
+
+            $directors = array_merge($directors, $this->getCategories());
+            $form->select('pid', '所属栏目')->options($directors)->value($category->pid);
+
 
             // 数字输入框
-            $form->number('rate', '打分');
+            $form->number('weight', '权重')->value($category->weight);
 
-            // 添加开关操作
-            $form->switch('released', '发布？');
+            $states = [
+                'on'  => ['value' => 0, 'text' => '启用', 'color' => 'success'],
+                'off' => ['value' => 1, 'text' => '禁用', 'color' => 'danger'],
+            ];
 
-            // 添加日期时间选择框
-            $form->dateTime('release_at', '发布时间');
+            $form->switch('status', '状态')->states($states)->value($category->status);
 
             // 两个时间显示
-            $form->display('created_at', '创建时间');
-            $form->display('updated_at', '修改时间');
+            $form->display('created_at', '创建时间')->value($category->created_at);
+            $form->display('updated_at', '修改时间')->value($category->updated_at);
 
             $form->tools(function (Form\Tools $tools) {
 
@@ -156,13 +199,24 @@ class CategoryController extends Controller
                 // 添加一个按钮, 参数可以是字符串, 或者实现了Renderable或Htmlable接口的对象实例
             });
 
-            $form->setAction('');
+            $form->setAction("/admin/category/{$id}/edit");
         });
 
         return Admin::content(function (Content $content) use($grid) {
-            $content->description('编辑新闻');
+            $content->description('编辑栏目');
             $content->row($grid);
         });
 
+    }
+
+    private function getCategories()
+    {
+        $items = [];
+        $categories = Category::all();
+        foreach($categories as $category) {
+            $items[$category->id] = $category->name;
+        }
+
+        return $items;
     }
 }
