@@ -6,7 +6,8 @@ class HomeController extends Controller
 {
     public  function index() 
     {
-        echo 'Laravel';
+
+        return view('home/index');
     }
 }
 

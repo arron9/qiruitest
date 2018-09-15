@@ -23,7 +23,7 @@ Encore\Admin\Form::forget(['map', 'editor']);
 use Encore\Admin\Facades\Admin;
 
 Admin::navbar(function (\Encore\Admin\Widgets\Navbar $navbar) {
-    $navbar->left(view('admin/header-bar'));
-    $navbar->right(new \App\Admin\Extensions\Nav\Links());
+//    $navbar->left(view('admin/header-bar'));
+//    $navbar->right(new \App\Admin\Extensions\Nav\Links());
 });
 
