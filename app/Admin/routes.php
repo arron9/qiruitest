@@ -31,4 +31,6 @@ Route::group([
     $router->get('/article/{id}/edit', 'ArticleController@edit');
     $router->post('/article/{id}/edit', 'ArticleController@edit');
 
+    //图片上传
+    $router->post('/article/ckeditorUploadImg', 'ArticleController@ckeditorUploadImg');
 });
