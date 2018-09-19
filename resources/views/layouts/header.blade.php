@@ -40,7 +40,7 @@
         <ul class="nav">
             <li class="active">
 
-                <a class="a" href="/solve/solve12.html">解决方案</a>
+                <a class="a" href="/solve/solve12.html">解决方案{{$product}}</a>
                 <img class="focus" src="/image/nav-hover.png" alt="">
                 <div class="nav-two transition">
                     <div class="content clearfix">

@@ -11,7 +11,7 @@
             <span class="right-img">
                 <img src="../image/product/fold.png" alt="">
             </span>
-            <a class="type title-link" href="/solve/solve12.html" data-id="12">射频与微波测试系统</a>
+            <a class="type title-link" href="/solve/solve12.html" data-id="12">{{$title}}</a>
             <ul>
 
                 <li>
