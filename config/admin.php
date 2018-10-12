@@ -5,7 +5,7 @@ return [
     /*
      * Laravel-admin name.
      */
-    'name' => '奇锐',
+    'name' => '上海骐瑞测试',
 
     /*
      * Logo in admin panel header.
@@ -37,7 +37,7 @@ return [
     /*
      * Laravel-admin html title.
      */
-    'title' => 'Admin',
+    'title' => '上海骐瑞测试管理后台',
 
     /*
      * Use `https`.

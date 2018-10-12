@@ -59,7 +59,7 @@ return [
             'driver' => 'local',
             'root' => public_path('uploads'),
             'visibility' => 'public',
-            'url' => env('APP_URL'),
+            'url' => env('APP_URL') . DIRECTORY_SEPARATOR . 'uploads',
         ],
 
         's3' => [
