@@ -22,12 +22,12 @@ class CategoryController extends Controller
 
             $grid->id('id')->sortable();
 
-            $pids = array_merge(['顶级目录'],$this->getCategories());
+            $grid->column('name', '名称');
+
+            $pids = array_merge(['/根目录'],$this->getCategories());
             $grid->pid('所属栏目')->display(function($pid) use($pids) {
                 return $pids[$pid];
             });
-
-            $grid->column('name', '名称');
 
             $grid->status('状态')->display(function ($status) {
                 switch ($status) {
@@ -95,7 +95,7 @@ class CategoryController extends Controller
             $form->text('name', '栏目名称');
 
             $directors = [
-                '0'  => '顶级目录',
+                '0'  => '/根目录',
             ];
 
             $directors = array_merge($directors, $this->getCategories());
@@ -167,7 +167,7 @@ class CategoryController extends Controller
             $form->text('name', '栏目名称')->value($category->name);
 
             $directors = [
-                '0'  => '顶级目录',
+                '0'  => '/根目录',
             ];
 
             $directors = array_merge($directors, $this->getCategories());

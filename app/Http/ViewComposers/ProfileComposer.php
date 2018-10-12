@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
+use App\Models\Category;
 
 class ProfileComposer
 {
@@ -19,6 +20,16 @@ class ProfileComposer
      */
     public function compose(View $view)
     {
-        $view->with('product', '标题');
+        $treeCategories = $this->buildTreeCategories(0);
+        $view->with('categories', $treeCategories);
     }
+
+    private function buildTreeCategories($pid = 0) {
+        $categories = Category::where('pid', $pid)
+            ->orderBy('weight', 'desc')
+            ->get();
+
+        var_dump($categories);exit;
+    }
+
 }

@@ -123,7 +123,7 @@ class ArticleController extends Controller
             $form->text('title', '标题');
             $form->text('alias', '副标题');
 
-            $form->image('cover', '封面')->move('public/upload/image/');
+            $form->image('cover', '封面')->move('public/uploads/images/');
             $form->textarea('desc', '简介')->rows(10);
 
             $directors = $this->getCategories();
@@ -262,7 +262,7 @@ class ArticleController extends Controller
                 // 重命名
                 $filename = time() . str_random(6) . "." . $ext;
                 if ($file->move("uploads/images", $filename)) {
-                    $newFileName = '/' . "uploads/images" . '/' . $filename;
+                    $newFileName = '/images/' . $filename;
 
                     return $newFileName;
                 } 
@@ -279,7 +279,7 @@ class ArticleController extends Controller
         $data = [
             'fileName' => $fileName,
             'uploaded' => 1, 
-            'url' => env('APP_URL'). $fileName,
+            'url' => env('APP_URL'). '/uploads/'. $fileName,
         ];
 
         return Response()->json($data);
