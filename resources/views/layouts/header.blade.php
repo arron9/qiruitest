@@ -38,262 +38,237 @@
     </a>
     <div class="nav-box">
         <ul class="nav">
-            <li class="active">
+            @foreach($categories as $category)
+            <li class="ot">
 
-                <a class="a" href="/solve/solve12.html">解决方案{{$product}}</a>
+                <a class="a" href="/solve/solve12.html">{{$category['name']}}</a>
                 <img class="focus" src="/image/nav-hover.png" alt="">
                 <div class="nav-two transition">
                     <div class="content clearfix">
                         <div class="twobox">
-
+                            @isset($category['children'])
+                                @foreach($category['children'] as $firstCategory) 
                                     <dl>
-                                        <dt><a href="/solve/solve12.html" target="_blank">射频与微波测试系统</a></dt>
-
-                                                <dd><a href="/solve/s24.html" target="_blank">复杂电磁环境采集和记录回放系统</a></dd>
-
-                                                <dd><a href="/solve/s33.html" target="_blank">雷达T/R组件测试系统方案</a></dd>
-
-                                                <dd><a href="/solve/s36.html" target="_blank">X波段SAR雷达信号产生与接收分析系统,复杂电磁环境采集和记录回放系统</a></dd>
-
-
+                                        <dt><a href="/solve/solve12.html" target="_blank">{{$firstCategory['name']}}</a></dt>
+                                        @isset($firstCategory['children'])
+                                            @foreach($firstCategory['children'] as $secondCategory)
+                                                <dd><a href="/solve/s24.html" target="_blank">{{$secondCategory['name']}}</a></dd>
+                                            @endforeach
+                                        @endisset
                                     </dl>
-
-                                    <dl>
-                                        <dt><a href="/solve/solve13.html" target="_blank">功率电子测试系统</a></dt>
-
-                                                <dd><a href="/solve/s37.html" target="_blank">光伏逆变器自动测试系统</a></dd>
-
-                                                <dd><a href="/solve/s38.html" target="_blank">电源特性自动检测系统</a></dd>
-
-                                                <dd><a href="/solve/s39.html" target="_blank">Elgar SAS太阳能电池阵模拟器</a></dd>
-
-                                                <dd><a href="/solve/s40.html" target="_blank">Elgar BSS电池模拟系统</a></dd>
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/solve/solve20.html" target="_blank">数字、模拟高速信号测试系统</a></dt>
-
-                                                <dd><a href="/solve/s34.html" target="_blank">高速PCB信号完整性测试方案</a></dd>
-
-                                                <dd><a href="/solve/s41.html" target="_blank">高速数字电路板（PCB）级设计与测试方案</a></dd>
-
-                                                <dd><a href="/solve/s42.html" target="_blank">40G QSFP无源电缆测试</a></dd>
-
-
-                                    </dl>
-
+                                @endforeach
+                            @endisset
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="ot">
-
-                <a href="/product/type6.html" target="_blank">产品展示</a>
-                <img class="focus" src="/image/nav-hover.png" alt="">
-                <div class="nav-two transition">
-                    <div class="content clearfix" style="text-align: left;">
-                        <div class="twobox">
-
-                                    <dl>
-                                        <dt><a href="/product/type6.html" target="_blank">射频、微波信号产生与分析</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl00$ProID" id="header_rptProduct_ctl00_ProID" value="6" />
-
-                                                <dd><a href="/product/product153.html" target="_blank">信道模拟器</a></dd>
-
-                                                <dd><a href="/product/product110.html" target="_blank">上下变频器</a></dd>
-
-                                                <dd><a href="/product/product116.html" target="_blank">噪声源</a></dd>
-
-                                                <dd><a href="/product/product154.html" target="_blank">射频/微波信号源</a></dd>
-
-                                                <dd><a href="/product/product96.html" target="_blank">相噪/信号源分析仪</a></dd>
-
-
-                                        <dd><a href="/product/type6.html" target="_blank" class="active">更多>></a></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type142.html" target="_blank">射频、微波模块</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl01$ProID" id="header_rptProduct_ctl01_ProID" value="142" />
-
-                                                <dd><a href="/product/product138.html" target="_blank">低噪放模块</a></dd>
-
-                                                <dd><a href="/product/product139.html" target="_blank">频综模块</a></dd>
-
-                                                <dd><a href="/product/product140.html" target="_blank">数控衰减器</a></dd>
-
-                                                <dd><a href="/product/product143.html" target="_blank">噪声头</a></dd>
-
-                                                <dd><a href="/product/product155.html" target="_blank">功分器</a></dd>
-
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type3.html" target="_blank">基带、IF信号采集、产生与分析</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl02$ProID" id="header_rptProduct_ctl02_ProID" value="3" />
-
-                                                <dd><a href="/product/product112.html" target="_blank">高速信号采集</a></dd>
-
-                                                <dd><a href="/product/product109.html" target="_blank">任意波形发生器</a></dd>
-
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type34.html" target="_blank">电力电子测试</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl03$ProID" id="header_rptProduct_ctl03_ProID" value="34" />
-
-                                                <dd><a href="/product/product40.html" target="_blank">频率响应分析仪</a></dd>
-
-                                                <dd><a href="/product/product146.html" target="_blank">电源抑制比（PSRR）分析</a></dd>
-
-                                                <dd><a href="/product/product39.html" target="_blank">功率分析仪</a></dd>
-
-                                                <dd><a href="/product/product102.html" target="_blank">绝缘耐压测试仪</a></dd>
-
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type52.html" target="_blank">计量与校准</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl04$ProID" id="header_rptProduct_ctl04_ProID" value="52" />
-
-                                                <dd><a href="/product/product53.html" target="_blank">基础电学计量与校准</a></dd>
-
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type59.html" target="_blank">半导体测试系统</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl05$ProID" id="header_rptProduct_ctl05_ProID" value="59" />
-
-                                                <dd><a href="/product/product60.html" target="_blank">集成电路测试系统</a></dd>
-
-                                                <dd><a href="/product/product148.html" target="_blank">功率半导体测试系统</a></dd>
-
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type144.html" target="_blank">PXI、PCI模块化解决方案</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl06$ProID" id="header_rptProduct_ctl06_ProID" value="144" />
-
-                                                <dd><a href="/product/product149.html" target="_blank">PXI/PXIe产品</a></dd>
-
-
-
-                                    </dl>
-
-                                    <dl>
-                                        <dt><a href="/product/type145.html" target="_blank">其他产品</a></dt>
-                                        <input type="hidden" name="header$rptProduct$ctl07$ProID" id="header_rptProduct_ctl07_ProID" value="145" />
-
-                                                <dd><a href="/product/product151.html" target="_blank">延迟信号发生器</a></dd>
-
-                                                <dd><a href="/product/product152.html" target="_blank">抖动噪声信号发生器</a></dd>
-
-
-
-                                    </dl>
-
-
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="ot">
-
-                <a href="/service/service6.html" target="_blank">技术服务</a>
-                <img class="focus" src="/image/nav-hover.png" alt="">
-                <div class="nav-two transition">
-                    <div class="content">
-
-                                <a href="/service/service6.html" target="_blank" class="nav-two-link">测试外包服务</a>
-
-                                <a href="/service/service7.html" target="_blank" class="nav-two-link">产品维护及维修</a>
-
-                                <a href="/service/service21.html" target="_blank" class="nav-two-link">产品与测试系统定制</a>
-
-                    </div>
-                </div>
-            </li>
-            <li class="ot">
-
-                <a href="/download/download10.html" target="_blank">支持与下载</a>
-                <img class="focus" src="/image/nav-hover.png" alt="">
-                <div class="nav-two transition">
-                    <div class="content">
-                        <div class="twobox">
-
-                                    <dl>
-                                        <dt><a href="/download/download10.html" target="_blank">产品说明及技术指标</a></dt>
-
-                                                <dd><a href="/download/download14.html" target="_blank">产品技术指标</a></dd>
-
-                                                <dd><a href="/download/download15.html" target="_blank">应用指南</a></dd>
-
-                                                <dd><a href="/download/download23.html" target="_blank">操作手册及编程指南</a></dd>
-
-                                     </dl>
-
-                                    <dl>
-                                        <dt><a href="/download/download11.html" target="_blank">软件及固件</a></dt>
-
-                                     </dl>
-
-                        </div>
-
-                    </div>
-                </div>
-            </li>
-            <li class="ot">
-
-            <a href="/recruitment/recruitment.html" target="_blank">人才招聘</a>
-                <img class="focus" src="/image/nav-hover.png" alt="">
-                <div class="nav-two transition">
-                    <div class="content">
-                        <a href="/recruitment/recruitment.html" class="nav-two-link" target="_blank">人才招聘</a>
-
-                    </div>
-                </div>
-            </li>
-            <li class="ot">
-              <a href="/AboutUs/index.html" target="_blank">关于我们</a>
-
-                <img class="focus" src="/image/nav-hover.png" alt="">
-                <div class="nav-two transition">
-                    <div class="content">
-                        <a href="/aboutus/index.html" class="nav-two-link" target="_blank">公司简介</a>
-                        <a href="/aboutus/business.html" class="nav-two-link" target="_blank">核心业务</a>
-                        <a href="/aboutus/contcat.html" class="nav-two-link" target="_blank">联系我们</a>
-                        <a href="/aboutus/culture.html" class="nav-two-link" target="_blank">企业文化</a>
-                        <a href="/aboutus/e27.html" class="nav-two-link" target="_blank">企业风采</a>
-                    </div>
-                </div>
-            </li>
-            <li class="ot">
-
-                <a href="/news/news8.html" target="_blank">新闻中心</a>
-                <img class="focus" src="/image/nav-hover.png" alt="">
-                <div class="nav-two transition">
-                    <div class="content">
-
-                                <a href="/news/news8.html" class="nav-two-link" target="_blank">行业新闻</a>
-
-                                <a href="/news/news9.html" class="nav-two-link" target="_blank">公司新闻</a>
-
-
-                    </div>
-                </div>
-            </li>
+            @endforeach
+            {{-- <li class="ot"> --}}
+            {{--  --}}
+            {{--     <a href="/product/type6.html" target="_blank">产品展示</a> --}}
+            {{--     <img class="focus" src="/image/nav-hover.png" alt=""> --}}
+            {{--     <div class="nav-two transition"> --}}
+            {{--         <div class="content clearfix" style="text-align: left;"> --}}
+            {{--             <div class="twobox"> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type6.html" target="_blank">射频、微波信号产生与分析</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl00$ProID" id="header_rptProduct_ctl00_ProID" value="6" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product153.html" target="_blank">信道模拟器</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product110.html" target="_blank">上下变频器</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product116.html" target="_blank">噪声源</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product154.html" target="_blank">射频/微波信号源</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product96.html" target="_blank">相噪/信号源分析仪</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                             <dd><a href="/product/type6.html" target="_blank" class="active">更多>></a></dd> --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type142.html" target="_blank">射频、微波模块</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl01$ProID" id="header_rptProduct_ctl01_ProID" value="142" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product138.html" target="_blank">低噪放模块</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product139.html" target="_blank">频综模块</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product140.html" target="_blank">数控衰减器</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product143.html" target="_blank">噪声头</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product155.html" target="_blank">功分器</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type3.html" target="_blank">基带、IF信号采集、产生与分析</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl02$ProID" id="header_rptProduct_ctl02_ProID" value="3" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product112.html" target="_blank">高速信号采集</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product109.html" target="_blank">任意波形发生器</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type34.html" target="_blank">电力电子测试</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl03$ProID" id="header_rptProduct_ctl03_ProID" value="34" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product40.html" target="_blank">频率响应分析仪</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product146.html" target="_blank">电源抑制比（PSRR）分析</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product39.html" target="_blank">功率分析仪</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product102.html" target="_blank">绝缘耐压测试仪</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type52.html" target="_blank">计量与校准</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl04$ProID" id="header_rptProduct_ctl04_ProID" value="52" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product53.html" target="_blank">基础电学计量与校准</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type59.html" target="_blank">半导体测试系统</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl05$ProID" id="header_rptProduct_ctl05_ProID" value="59" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product60.html" target="_blank">集成电路测试系统</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product148.html" target="_blank">功率半导体测试系统</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type144.html" target="_blank">PXI、PCI模块化解决方案</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl06$ProID" id="header_rptProduct_ctl06_ProID" value="144" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product149.html" target="_blank">PXI/PXIe产品</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/product/type145.html" target="_blank">其他产品</a></dt> --}}
+            {{--                             <input type="hidden" name="header$rptProduct$ctl07$ProID" id="header_rptProduct_ctl07_ProID" value="145" /> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product151.html" target="_blank">延迟信号发生器</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/product/product152.html" target="_blank">抖动噪声信号发生器</a></dd> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--  --}}
+            {{--                         </dl> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--             </div> --}}
+            {{--         </div> --}}
+            {{--     </div> --}}
+            {{-- </li> --}}
+            {{-- <li class="ot"> --}}
+            {{--  --}}
+            {{--     <a href="/service/service6.html" target="_blank">技术服务</a> --}}
+            {{--     <img class="focus" src="/image/nav-hover.png" alt=""> --}}
+            {{--     <div class="nav-two transition"> --}}
+            {{--         <div class="content"> --}}
+            {{--  --}}
+            {{--                     <a href="/service/service6.html" target="_blank" class="nav-two-link">测试外包服务</a> --}}
+            {{--  --}}
+            {{--                     <a href="/service/service7.html" target="_blank" class="nav-two-link">产品维护及维修</a> --}}
+            {{--  --}}
+            {{--                     <a href="/service/service21.html" target="_blank" class="nav-two-link">产品与测试系统定制</a> --}}
+            {{--  --}}
+            {{--         </div> --}}
+            {{--     </div> --}}
+            {{-- </li> --}}
+            {{-- <li class="ot"> --}}
+            {{--  --}}
+            {{--     <a href="/download/download10.html" target="_blank">支持与下载</a> --}}
+            {{--     <img class="focus" src="/image/nav-hover.png" alt=""> --}}
+            {{--     <div class="nav-two transition"> --}}
+            {{--         <div class="content"> --}}
+            {{--             <div class="twobox"> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/download/download10.html" target="_blank">产品说明及技术指标</a></dt> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/download/download14.html" target="_blank">产品技术指标</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/download/download15.html" target="_blank">应用指南</a></dd> --}}
+            {{--  --}}
+            {{--                                     <dd><a href="/download/download23.html" target="_blank">操作手册及编程指南</a></dd> --}}
+            {{--  --}}
+            {{--                          </dl> --}}
+            {{--  --}}
+            {{--                         <dl> --}}
+            {{--                             <dt><a href="/download/download11.html" target="_blank">软件及固件</a></dt> --}}
+            {{--  --}}
+            {{--                          </dl> --}}
+            {{--  --}}
+            {{--             </div> --}}
+            {{--  --}}
+            {{--         </div> --}}
+            {{--     </div> --}}
+            {{-- </li> --}}
+            {{-- <li class="ot"> --}}
+            {{--  --}}
+            {{-- <a href="/recruitment/recruitment.html" target="_blank">人才招聘</a> --}}
+            {{--     <img class="focus" src="/image/nav-hover.png" alt=""> --}}
+            {{--     <div class="nav-two transition"> --}}
+            {{--         <div class="content"> --}}
+            {{--             <a href="/recruitment/recruitment.html" class="nav-two-link" target="_blank">人才招聘</a> --}}
+            {{--  --}}
+            {{--         </div> --}}
+            {{--     </div> --}}
+            {{-- </li> --}}
+            {{-- <li class="ot"> --}}
+            {{--   <a href="/AboutUs/index.html" target="_blank">关于我们</a> --}}
+            {{--  --}}
+            {{--     <img class="focus" src="/image/nav-hover.png" alt=""> --}}
+            {{--     <div class="nav-two transition"> --}}
+            {{--         <div class="content"> --}}
+            {{--             <a href="/aboutus/index.html" class="nav-two-link" target="_blank">公司简介</a> --}}
+            {{--             <a href="/aboutus/business.html" class="nav-two-link" target="_blank">核心业务</a> --}}
+            {{--             <a href="/aboutus/contcat.html" class="nav-two-link" target="_blank">联系我们</a> --}}
+            {{--             <a href="/aboutus/culture.html" class="nav-two-link" target="_blank">企业文化</a> --}}
+            {{--             <a href="/aboutus/e27.html" class="nav-two-link" target="_blank">企业风采</a> --}}
+            {{--         </div> --}}
+            {{--     </div> --}}
+            {{-- </li> --}}
+            {{-- <li class="ot"> --}}
+            {{--  --}}
+            {{--     <a href="/news/news8.html" target="_blank">新闻中心</a> --}}
+            {{--     <img class="focus" src="/image/nav-hover.png" alt=""> --}}
+            {{--     <div class="nav-two transition"> --}}
+            {{--         <div class="content"> --}}
+            {{--  --}}
+            {{--                     <a href="/news/news8.html" class="nav-two-link" target="_blank">行业新闻</a> --}}
+            {{--  --}}
+            {{--                     <a href="/news/news9.html" class="nav-two-link" target="_blank">公司新闻</a> --}}
+            {{--  --}}
+            {{--  --}}
+            {{--         </div> --}}
+            {{--     </div> --}}
+            {{-- </li> --}}
         </ul>
         <div class="open-icon">
             <img src="/image/icon-open.png" alt="">

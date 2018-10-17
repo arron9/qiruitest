@@ -20,16 +20,29 @@ class ProfileComposer
      */
     public function compose(View $view)
     {
-        $treeCategories = $this->buildTreeCategories(0);
+        $category = new Category;
+        $categories = $category->orderBy('weight', 'desc')
+            ->get()->toArray();
+
+        $treeCategories = $this->buildTree($categories);
         $view->with('categories', $treeCategories);
     }
 
-    private function buildTreeCategories($pid = 0) {
-        $categories = Category::where('pid', $pid)
-            ->orderBy('weight', 'desc')
-            ->get();
+    private function buildTree($data, $pid = 0) 
+    {
+        $all = array();
+        foreach ($data as $key => $item) {
+            if ($item['pid'] == $pid) {
+                 $children =  $this->buildTree($data, $item['id']);
+                 if (!empty($children)) {
+                     $item['children'] = $children;
+                 }
+                $all[] = $item;
+            }
+        }
 
-        var_dump($categories);exit;
+        return $all;
     }
+
 
 }
