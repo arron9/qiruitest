@@ -11,13 +11,13 @@
             <span class="right-img">
                 <img src="../image/product/fold.png" alt="">
             </span>
-            <a class="type title-link" href="/solve/solve12.html" data-id="12">{{$category['name']}}
+            <a class="type title-link" href="/sovle/{{$pageId}}/sovle{{$category['id']}}.html" data-id="{{$category['id']}}">{{$category['name']}}
             </a>
             <ul>
                 @isset($category['children'])
                 @foreach($category['children'] as $secondCategory)
                 <li>
-                    <a class="info" data-id="24" href="/solve/s24.html">{{$secondCategory['name']}}</a>
+                    <a class="info" data-id="{{$secondCategory['id']}}" href="/sovle/{{$pageId}}/sovle{{$secondCategory['id']}}.html">{{$secondCategory['name']}}</a>
                 </li>
                 @endforeach
                 @endisset

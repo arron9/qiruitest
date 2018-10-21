@@ -12,3 +12,4 @@
 */
 
 Route::get('/','HomeController@index');
+Route::get('/sovle/{pageId}/sovle{categoryId}.html','HomeController@index');

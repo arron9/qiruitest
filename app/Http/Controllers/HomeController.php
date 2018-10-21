@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller 
 {
-    public  function index(Request $request) 
+    public  function index(Request $request, $pageId = 4, $categoryId = 5) 
     {
-        $pageId = $request->query('pageId', 4);
-        $categoryId = $request->query('categoryId', 5);
         $category = new Category;
         $categories = $category->orderBy('weight', 'desc')
             ->get()->toArray();
@@ -20,7 +18,14 @@ class HomeController extends Controller
         $article = Article::where('category_id', $categoryId)
             ->first()->toArray();
 
-        return view('home/index', ['categories' => $treeCategories, 'content' => htmlspecialchars_decode($article['content'])]);
+        $data = [
+            'categories' => $treeCategories,
+            'content' => $article['content'],
+            'pageId' => $pageId,
+            'categoryId' => $categoryId,
+        ]; 
+
+        return view('home/index', $data);
     }
 }
 
