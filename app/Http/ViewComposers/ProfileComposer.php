@@ -27,8 +27,4 @@ class ProfileComposer
         $treeCategories = buildTree($categories);
         $view->with('categories', $treeCategories);
     }
-
-    
-
-
 }

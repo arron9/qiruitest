@@ -11,7 +11,7 @@
             <span class="right-img">
                 <img src="../image/product/fold.png" alt="">
             </span>
-            <a class="type title-link" href="/sovle/{{$pageId}}/sovle{{$category['id']}}.html" data-id="{{$category['id']}}">{{$category['name']}}
+            <a class="type title-link" href="/solve/{{$pageId}}/solve{{$category['id']}}.html" data-id="{{$category['id']}}">{{$category['name']}}
             </a>
             <ul>
                 @isset($category['children'])

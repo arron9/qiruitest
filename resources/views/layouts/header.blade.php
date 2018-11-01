@@ -40,8 +40,7 @@
         <ul class="nav">
             @foreach($categories as $category)
             <li class="ot">
-
-                <a class="a" href="/solve/solve12.html">{{$category['name']}}</a>
+                <a class="a" href="/solve/<?=$category['id']?>/solve<?=$category['children'][0]['id']??''?>.html">{{$category['name']}}</a>
                 <img class="focus" src="/image/nav-hover.png" alt="">
                 <div class="nav-two transition">
                     <div class="content clearfix">
@@ -49,10 +48,10 @@
                             @isset($category['children'])
                                 @foreach($category['children'] as $firstCategory) 
                                     <dl>
-                                        <dt><a href="/solve/solve12.html" target="_blank">{{$firstCategory['name']}}</a></dt>
+                                        <dt><a href="/solve/<?=$category['id']?>/solve<?=$firstCategory['id']?>.html" target="_blank">{{$firstCategory['name']}}</a></dt>
                                         @isset($firstCategory['children'])
                                             @foreach($firstCategory['children'] as $secondCategory)
-                                                <dd><a href="/solve/s24.html" target="_blank">{{$secondCategory['name']}}</a></dd>
+                                                <dd><a href="/solve/<?=$category['id']?>/solve<?=$secondCategory['id'];?>.html" target="_blank">{{$secondCategory['name']}}</a></dd>
                                             @endforeach
                                         @endisset
                                     </dl>

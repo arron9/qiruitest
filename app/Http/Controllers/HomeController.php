@@ -12,15 +12,19 @@ class HomeController extends Controller
         $category = new Category;
         $categories = $category->orderBy('weight', 'desc')
             ->get()->toArray();
+        
 
         $treeCategories = buildTree($categories, $pageId);
 
         $article = Article::where('category_id', $categoryId)
-            ->first()->toArray();
+            ->first();
+        if (!empty($article)) {
+            $article = $article->toArray();
+        }
 
         $data = [
             'categories' => $treeCategories,
-            'content' => $article['content'],
+            'content' => $article['content']??'',
             'pageId' => $pageId,
             'categoryId' => $categoryId,
         ]; 
