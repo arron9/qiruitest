@@ -24,6 +24,8 @@ class CategoryController extends Controller
 
             $grid->column('name', '名称');
 
+            $grid->column('key', '关键字');
+
             $pids = array_merge(['/根目录'],$this->getCategories());
             $grid->pid('所属栏目')->display(function($pid) use($pids) {
                 return $pids[$pid];
@@ -71,14 +73,16 @@ class CategoryController extends Controller
             $pid    = intval($request->input('pid'));
             $status = $request->input('status') == 'on'? 0: 1;
             $weight = intval($request->input('weight'));
+            $key    = $request->input('key');
 
             $date = date('Y-m-d H:i:s');
 
-            $category = new Category;
-            $category->name = $name;
-            $category->pid = $pid;
-            $category->status = $status;
-            $category->weight = $weight;
+            $category             = new Category;
+            $category->name       = $name;
+            $category->pid        = $pid;
+            $category->status     = $status;
+            $category->weight     = $weight;
+            $category->key        = $key;
             $category->created_at = $date;
             $category->updated_at = $date;
 
@@ -93,6 +97,7 @@ class CategoryController extends Controller
 
             // 添加text类型的input框
             $form->text('name', '栏目名称');
+            $form->text('key', '关键字');
 
             $directors = [
                 '0'  => '/根目录',
@@ -141,6 +146,7 @@ class CategoryController extends Controller
     {
         if ($request->isMethod('post')) {
             $name   = $request->input('name');
+            $key = $request->input('key');
             $pid    = intval($request->input('pid'));
             $status = $request->input('status') == 'on'? 0: 1;
             $weight = intval($request->input('weight'));
@@ -148,6 +154,7 @@ class CategoryController extends Controller
             $date = date('Y-m-d H:i:s');
             $data = [
                 'name' => $name,
+                'key' => $key,
                 'pid' => $pid,
                 'status' => $status,
                 'weight' => $weight,
@@ -165,6 +172,7 @@ class CategoryController extends Controller
             $form->display('id', 'ID')->value($category->id);
 
             $form->text('name', '栏目名称')->value($category->name);
+            $form->text('key', '关键字')->value($category->key);
 
             $directors = [
                 '0'  => '/根目录',

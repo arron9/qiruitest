@@ -20,9 +20,33 @@ class HomeController extends Controller
     /*
      * 解决方案
      */
-    public function sovle(Request $request, $articleId = 0) 
+    public function solve(Request $request, $articleId = 0) 
     {
-        $data = [];
+        $category = new Category;
+        $categories = $category->orderBy('weight', 'desc')
+            ->get()->toArray();
+
+        $treeCategories = buildTree($categories, 4);
+
+        $content = '';
+        if ($articleId == 0) {
+            //TODO 获取当前大类下权重最大的分类id
+            $articleId = 5; 
+        }
+
+        $article = Article::where('category_id', $articleId)
+            ->first();
+        if ($article) {
+            $content = $article->content;
+        }
+
+        $data = [
+            'topic' => 'solve',
+            'categories' => $treeCategories,
+            'content' => $content,
+            'categoryId' => $articleId,
+        ];
+
         return view('home/solve', $data);
     }
 
@@ -31,7 +55,9 @@ class HomeController extends Controller
      */
     public function product(Request $request, $articleId = 0) 
     {
-        $data = [];
+        $data = [
+            'topic' => 'product'
+        ];
         return view('home/product', $data);
     }
 
@@ -40,7 +66,9 @@ class HomeController extends Controller
      */
     public function service(Request $request, $articleId = 0) 
     {
-        $data = [];
+        $data = [
+            'topic' => 'service'
+        ];
         return view('home/service', $data);
     }
 
@@ -49,7 +77,9 @@ class HomeController extends Controller
      */
     public function news(Request $request, $articleId = 0) 
     {
-        $data = [];
+        $data = [
+            'topic' => 'news'
+        ];
         return view('home/news', $data);
     }
 
@@ -58,7 +88,9 @@ class HomeController extends Controller
      */
     public function about(Request $request, $articleId = 0) 
     {
-        $data = [];
+        $data = [
+            'topic' => 'about'
+        ];
         return view('home/about', $data);
     }
 }
