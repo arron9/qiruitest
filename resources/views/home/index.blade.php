@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 @section('content')
+<<<<<<< HEAD
         <div class="index-banner">
             <!--<img src="image/banner.png" alt="">-->
             <div class="swiper-container banner-img">
@@ -49,6 +50,15 @@
             </a>
             <a href="#" class="right">
                 <img src="image/switch-right.png" alt="">
+=======
+    <div class="navigation line40 bg1">
+        @foreach($categories as $category)
+        <div class="title">
+            <span class="right-img">
+                <img src="../image/product/fold.png" alt="">
+            </span>
+            <a class="type title-link" href="/solve/{{$pageId}}/solve{{$category['id']}}.html" data-id="{{$category['id']}}">{{$category['name']}}
+>>>>>>> e1446bbbb9442f35e14512a38903c691938a1d58
             </a>
             
             <div class="switch"></div>

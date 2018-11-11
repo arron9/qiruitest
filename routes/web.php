@@ -33,3 +33,4 @@ Route::get('/about/about{articleId}.html','HomeController@about');
 //新闻中心
 Route::get('/news','HomeController@news');
 Route::get('/news/news{articleId}.html','HomeController@news');
+

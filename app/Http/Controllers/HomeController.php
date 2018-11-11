@@ -16,6 +16,7 @@ class HomeController extends Controller
         return view('home/index', $data);
     }
 
+
     /*
      * 解决方案
      */
