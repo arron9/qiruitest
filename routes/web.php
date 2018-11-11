@@ -11,5 +11,25 @@
 |
 */
 
+//首页
 Route::get('/','HomeController@index');
-Route::get('/sovle/{pageId}/sovle{categoryId}.html','HomeController@index');
+
+//解决方案
+Route::get('/sovle','HomeController@sovle');
+Route::get('/sovle/sovle{articleId}.html','HomeController@sovle');
+
+//产品展示
+Route::get('/product','HomeController@product');
+Route::get('/product/product{articleId}.html','HomeController@product');
+
+//技术服务
+Route::get('/service','HomeController@service');
+Route::get('/service/service{articleId}.html','HomeController@service');
+
+//关于我们
+Route::get('/about','HomeController@about');
+Route::get('/about/about{articleId}.html','HomeController@about');
+
+//新闻中心
+Route::get('/news','HomeController@news');
+Route::get('/news/news{articleId}.html','HomeController@news');

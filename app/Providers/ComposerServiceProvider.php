@@ -16,7 +16,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // 使用基于类的 composer...
         View::composer(
-            'layouts.header', 'App\Http\ViewComposers\ProfileComposer'
+            'layouts.layout', 'App\Http\ViewComposers\ProfileComposer'
         );
     }
 
