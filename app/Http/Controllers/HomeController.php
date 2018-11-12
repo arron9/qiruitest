@@ -15,6 +15,7 @@ class HomeController extends Controller
         $data = [
             'topic' => '',
         ];
+
         return view('home/index', $data);
     }
 
@@ -53,39 +54,6 @@ class HomeController extends Controller
             'content' => $content,
             'categoryId' => $articleId,
             'type' => $type,
-        ];
-
-        return view('home/solve', $data);
-    }
-
-    /*
-     * 子解决方案类型
-     */
-    public function s(Request $request, $articleId = 0) 
-    {
-        $category = new Category;
-        $categories = $category->orderBy('weight', 'desc')
-            ->get()->toArray();
-
-        $treeCategories = buildTree($categories, 2);
-
-        $content = '';
-        if ($articleId == 0) {
-            //TODO 获取当前大类下权重最大的分类id
-            $articleId = 5; 
-        }
-
-        $article = Article::where('category_id', $articleId)
-            ->first();
-        if ($article) {
-            $content = $article->content;
-        }
-
-        $data = [
-            'topic' => 'solve',
-            'categories' => $treeCategories,
-            'content' => $content,
-            'categoryId' => $articleId,
         ];
 
         return view('home/solve', $data);
@@ -143,9 +111,31 @@ class HomeController extends Controller
      */
     public function service(Request $request, $articleId = 0) 
     {
+        $category = new Category;
+        $categories = $category->orderBy('weight', 'desc')
+            ->get()->toArray();
+
+        $treeCategories = buildTree($categories, 3);
+
+        $content = '';
+        if ($articleId == 0) {
+            //TODO 获取当前大类下权重最大的分类id
+            $articleId = 5; 
+        }
+
+        $article = Article::where('category_id', $articleId)
+            ->first();
+        if ($article) {
+            $content = $article->content;
+        }
+
         $data = [
-            'topic' => 'service'
+            'topic' => 'service',
+            'categories' => $treeCategories,
+            'content' => $content,
+            'categoryId' => $articleId,
         ];
+
         return view('home/service', $data);
     }
 
@@ -154,9 +144,41 @@ class HomeController extends Controller
      */
     public function news(Request $request, $articleId = 0) 
     {
+
+        $category = new Category;
+        $categories = $category->orderBy('weight', 'desc')
+            ->get()->toArray();
+
+        $treeCategories = buildTree($categories, 4);
+
+        if ($articleId == 0) {
+            //TODO 获取当前大类下权重最大的分类id
+            $articleId = 5; 
+        }
+
+        $data = [];
+         if (str_replace('news/', '', $request->path()) == "detail{$articleId}.html"){
+            $type = 'detail';
+            $article = Article::where('id', $articleId)
+                ->first();
+        } else {
+            $type = 'news';
+            $article = Article::where('category_id', $articleId)
+                ->get();
+        } 
+
+        if ($article) {
+            $data = $article->toArray();
+        }
+
         $data = [
-            'topic' => 'news'
+            'topic' => 'news',
+            'categories' => $treeCategories,
+            'data' => $data,
+            'type' => $type,
+            'categoryId' => $articleId,
         ];
+
         return view('home/news', $data);
     }
 
@@ -165,9 +187,31 @@ class HomeController extends Controller
      */
     public function about(Request $request, $articleId = 0) 
     {
+        $category = new Category;
+        $categories = $category->orderBy('weight', 'desc')
+            ->get()->toArray();
+
+        $treeCategories = buildTree($categories, 8);
+
+        $content = '';
+        if ($articleId == 0) {
+            //TODO 获取当前大类下权重最大的分类id
+            $articleId = 5; 
+        }
+
+        $article = Article::where('category_id', $articleId)
+            ->first();
+        if ($article) {
+            $content = $article->content;
+        }
+
         $data = [
-            'topic' => 'about'
+            'topic' => 'about',
+            'categories' => $treeCategories,
+            'content' => $content,
+            'categoryId' => $articleId,
         ];
+
         return view('home/about', $data);
     }
 }

@@ -6,18 +6,13 @@
     <div class="banner-bg"></div>
     <div class="content">
         <div class="navigation line40 bg">
-            
-                    <a href="/news/news8.html" data-id="8">
+                @foreach($categories as $category)
+                    <a href="/news/news{{$category['id']}}.html" data-id="{{$category['id']}}">
                         <div class="title">
-                            <span>行业新闻</span>
+                            <span>{{$category['name']}}</span>
                         </div>
                     </a>
-                    <a href="/news/news9.html" data-id="9">
-                        <div class="title">
-                            <span>公司新闻</span>
-                        </div>
-                    </a>
-           
+                @endforeach
         </div>
         <div class="product-content">
             <p class="route">
@@ -26,84 +21,24 @@
                 <img class="icon1" src="../image/product/icon2.png" alt="">
                 <a href="/news/news8.html" class="type" data-id="8">新闻中心</a>
             </p>
+            @if($type == 'news')
             <ul class="list-data enterprise">
-                                   
+                        @foreach($data as $item)
                     <li>
                         <div class="img">
-                            <img src="/uploads/20170928/20170928170051884.jpg" alt="">
+                            <img src="{{$item['cover']}}" alt="">
                         </div>
                         <div class="text">
-                            <a class="h3" href="/news/s-1035-8.html">微信换脸盛铂科技助力风云系列卫星</a>
+                            <a class="h3" href="/news/detail{{$item['id']}}.html">{{$item['title']}}</a>
                             <div class="line"></div>
-                            <p></p>
+                            <p>{{$item['desc']}}</p>
                         </div>
                         <p class="month">09-28</p>
                         <img class="cur" src="../image/about/year-line1.png" alt="">
                         <img class="year-line" src="../image/about/year-line.png" alt="">
                         <p class="year">2017</p>
                     </li>
-                                   
-                    <li>
-                        <div class="img">
-                            <img src="/uploads/20170512/20170512110517614.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <a class="h3" href="/news/s-1021-8.html">Boonton峰值功率计使用统计方法测量似噪声信号</a>
-                            <div class="line"></div>
-                            <p></p>
-                        </div>
-                        <p class="month">05-12</p>
-                        <img class="cur" src="../image/about/year-line1.png" alt="">
-                        <img class="year-line" src="../image/about/year-line.png" alt="">
-                        <p class="year">2017</p>
-                    </li>
-                                   
-                    <li>
-                        <div class="img">
-                            <img src="/uploads/20170511/20170511135734302.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <a class="h3" href="/news/s-1020-8.html">功率因数校正电路环路稳定性新技术</a>
-                            <div class="line"></div>
-                            <p></p>
-                        </div>
-                        <p class="month">05-11</p>
-                        <img class="cur" src="../image/about/year-line1.png" alt="">
-                        <img class="year-line" src="../image/about/year-line.png" alt="">
-                        <p class="year">2017</p>
-                    </li>
-                                   
-                    <li>
-                        <div class="img">
-                            <img src="/uploads/20170511/20170511110351442.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <a class="h3" href="/news/s-1019-8.html">使用Boonton功率表进行详细的射频脉冲分析</a>
-                            <div class="line"></div>
-                            <p></p>
-                        </div>
-                        <p class="month">05-11</p>
-                        <img class="cur" src="../image/about/year-line1.png" alt="">
-                        <img class="year-line" src="../image/about/year-line.png" alt="">
-                        <p class="year">2017</p>
-                    </li>
-                                   
-                    <li>
-                        <div class="img">
-                            <img src="/uploads/20170510/20170510161513630.jpg" alt="">
-                        </div>
-                        <div class="text">
-                            <a class="h3" href="/news/s-1018-8.html">Boonton脉冲放大器平均功率测试应用</a>
-                            <div class="line"></div>
-                            <p>Boonton的4500B系列和4540系列功率分析仪，装配有峰值功率传感器，速度非常快，并且能提供足够广的动态范围来测量实际信号和有关真实信号跟踪的精确信息。</p>
-                        </div>
-                        <p class="month">05-10</p>
-                        <img class="cur" src="../image/about/year-line1.png" alt="">
-                        <img class="year-line" src="../image/about/year-line.png" alt="">
-                        <p class="year">2017</p>
-                    </li>
-                
-                
+                        @endforeach
             </ul>
             <ul class="num-list">
                 
@@ -120,6 +55,29 @@
 </div>
                 <div class="clear"></div>
             </ul>
+            @else 
+                <div class="detailed-content">
+                <div class="detailed-title">
+                    <a class="return" href="javascript:history.back(-1);">
+                        <img src="../image/about/icon2.png" alt="">
+                        返回
+                    </a>
+                    {{$data['title']}}
+                </div>
+
+                <p class="time">2017-09-28</p>
+                <p></p>
+                <?php
+                    if (!empty($data)) {
+                        echo html_entity_decode($data['content'], 1);
+                    }
+                ?>
+                <div class="page">
+                    <a class="prev" href="/news/s-0-8.html">上一篇：</a>
+                    <a class="next active" href="/news/s-1021-8.html">下一篇：Boonton峰值功率计使用统计方法测量似噪声信号</a>
+                </div>
+            </div>
+                @endif
         </div>
         <div class="clear"></div>
     </div>
