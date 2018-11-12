@@ -17,10 +17,13 @@ Route::get('/','HomeController@index');
 //解决方案
 Route::get('/solve.html','HomeController@solve');
 Route::get('/solve/solve{articleId}.html','HomeController@solve');
+Route::get('/solve/s{articleId}.html','HomeController@solve');
 
 //产品展示
 Route::get('/product.html','HomeController@product');
 Route::get('/product/product{articleId}.html','HomeController@product');
+Route::get('/product/type{articleId}.html','HomeController@product');
+Route::get('/product/detail{articleId}.html','HomeController@product');
 
 //技术服务
 Route::get('/service.html','HomeController@service');
