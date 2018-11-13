@@ -8,7 +8,7 @@
         <div class="navigation line40 bg">
                 @foreach($categories as $category)
                     <a href="/news/news{{$category['id']}}.html" data-id="{{$category['id']}}">
-                        <div class="title">
+                <div class="title {{$category['id'] == $categoryId?'active':''}}">
                             <span>{{$category['name']}}</span>
                         </div>
                     </a>
@@ -33,10 +33,10 @@
                             <div class="line"></div>
                             <p>{{$item['desc']}}</p>
                         </div>
-                        <p class="month">09-28</p>
+                        <p class="month">{{date('m-d', strtotime($item['updated_at']))}}</p>
                         <img class="cur" src="../image/about/year-line1.png" alt="">
                         <img class="year-line" src="../image/about/year-line.png" alt="">
-                        <p class="year">2017</p>
+                        <p class="year">{{date('Y', strtotime($item['updated_at']))}}</p>
                     </li>
                         @endforeach
             </ul>

@@ -125,14 +125,15 @@ class HomeController extends Controller
 
         $article = Article::where('category_id', $articleId)
             ->first();
+        $data = [];
         if ($article) {
-            $content = $article->content;
+            $data = $article->toArray();
         }
 
         $data = [
             'topic' => 'service',
             'categories' => $treeCategories,
-            'content' => $content,
+            'data' => $data,
             'categoryId' => $articleId,
         ];
 
@@ -201,14 +202,15 @@ class HomeController extends Controller
 
         $article = Article::where('category_id', $articleId)
             ->first();
+        $data = [];
         if ($article) {
-            $content = $article->content;
+            $data = $article->toArray();
         }
 
         $data = [
             'topic' => 'about',
             'categories' => $treeCategories,
-            'content' => $content,
+            'data' => $data,
             'categoryId' => $articleId,
         ];
 
