@@ -19,9 +19,9 @@
                     <img class="icon1" src="../image/product/icon1.png" alt="">
                     <a href="/">首页</a>
                     <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/service/service6.html">技术与服务</a>
+                    <a href="/service.html">{{$topicName}}</a>
                     <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="javascript:" class="text">测试外包服务</a>
+                    <a href="/service/service{{$route['id']}}.html" class="text">{{$route['title']}}</a>
                 </p>
                 <div class="business-content">
                     <?php

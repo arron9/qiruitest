@@ -37,16 +37,16 @@
         <div class="product-content">
             <p class="route">
                 <img class="icon1" src="../image/product/icon1.png" alt="">
-                <a href="../index.aspx">首页</a>
+                <a href="/">首页</a>
                 <img class="icon1" src="../image/product/icon2.png" alt="">
-                <a href="/solve/solve12.html">解决方案</a>
+                <a href="/solve.html">{{$topicName}}</a>
                 <img class="icon1" src="../image/product/icon2.png" alt="">
-                <a href="/solve/solve12.html" class="text" data-id="12" id="typeid">射频与微波测试系统</a>
+                <a href="/solve/{{$routeTopic}}{{$route['id']}}.html" class="text" data-id="{{$route['title']}}" id="typeid">{{$route['title']}}</a>
             </p>
             @if($type == 'parent')
                 <div class="business-content">
                     <?php
-                        echo html_entity_decode($content, 1)
+                        echo html_entity_decode($data['content'], 1)
                     ?>
                 </div>
             @else 
@@ -58,7 +58,7 @@
                 </div>
                 <div class="product-text">
                     <?php
-                        echo html_entity_decode($content, 1)
+                        echo html_entity_decode($data['content'], 1)
                     ?>
                 </div>
                 

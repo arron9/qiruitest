@@ -17,9 +17,9 @@
         <div class="product-content">
             <p class="route">
                 <img class="icon1" src="../image/product/icon1.png" alt="">
-                <a href="/index.aspx">首页</a>
+                <a href="/">首页</a>
                 <img class="icon1" src="../image/product/icon2.png" alt="">
-                <a href="/news/news8.html" class="type" data-id="8">新闻中心</a>
+                <a href="/news/{{$type}}{{$route['id']}}.html" class="type" data-id="8">{{$route['title']}}</a>
             </p>
             @if($type == 'news')
             <ul class="list-data enterprise">

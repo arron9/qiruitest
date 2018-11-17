@@ -23,11 +23,11 @@
         <div class="product-content">
             <p class="route">
             <img class="icon1" src="../image/product/icon1.png" alt="">
-            <a href="/index.aspx">首页</a>
+            <a href="/">首页</a>
             <img class="icon1" src="../image/product/icon2.png" alt="">
-            <a href="/aboutus/index.html">关于我们</a>
+            <a href="/about.html">{{$topicName}}</a>
             <img class="icon1" src="../image/product/icon2.png" alt="">
-            <a href="/aboutus/index.html" class="text">公司简介</a>
+            <a href="/about/about{{$route['id']}}.html" class="text">{{$route['title']}}</a>
             </p>
             <div class="about-content">
                 <div class="company-profile">

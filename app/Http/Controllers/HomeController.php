@@ -37,23 +37,31 @@ class HomeController extends Controller
             $articleId = 5; 
         }
 
+        $route = $this->getRouteInfo($categories, $articleId);
+
+        $data = [];
         $article = Article::where('category_id', $articleId)
             ->first();
         if ($article) {
-            $content = $article->content;
+            $data = $article->toArray();
         }
 
         $type = 'parent';
+        $routeTopic = 'solve';
         if (str_replace('solve/', '', $request->path()) == "s{$articleId}.html") {
             $type = 'child';
+            $routeTopic = 's';
         }
 
         $data = [
             'topic' => 'solve',
+            'topicName' => '解决方案',
             'categories' => $treeCategories,
-            'content' => $content,
+            'data' => $data,
             'categoryId' => $articleId,
             'type' => $type,
+            'route' => $route,
+            'routeTopic' => $routeTopic,
         ];
 
         return view('home/solve', $data);
@@ -90,16 +98,19 @@ class HomeController extends Controller
                 ->get();
         } 
 
+        $route = $this->getRouteInfo($categories, $articleId);
         if ($article) {
             $data = $article->toArray();
         }
 
         $data = [
             'topic' => 'product',
+            'topicName' => '解决方案',
             'categories' => $treeCategories,
             'data' => $data,
             'type' => $type,
             'categoryId' => $articleId,
+            'route' => $route,
         ];
 
         return view('home/product', $data);
@@ -123,6 +134,7 @@ class HomeController extends Controller
             $articleId = 5; 
         }
 
+        $route = $this->getRouteInfo($categories, $articleId);
         $article = Article::where('category_id', $articleId)
             ->first();
         $data = [];
@@ -132,9 +144,11 @@ class HomeController extends Controller
 
         $data = [
             'topic' => 'service',
+            'topicName' => '技术支持',
             'categories' => $treeCategories,
             'data' => $data,
             'categoryId' => $articleId,
+            'route' => $route,
         ];
 
         return view('home/service', $data);
@@ -172,12 +186,16 @@ class HomeController extends Controller
             $data = $article->toArray();
         }
 
+        $route = $this->getRouteInfo($categories, $articleId);
+
         $data = [
             'topic' => 'news',
+            'topicName' => '新闻中心',
             'categories' => $treeCategories,
             'data' => $data,
             'type' => $type,
             'categoryId' => $articleId,
+            'route' => $route
         ];
 
         return view('home/news', $data);
@@ -207,14 +225,33 @@ class HomeController extends Controller
             $data = $article->toArray();
         }
 
+        $route = $this->getRouteInfo($categories, $articleId);
         $data = [
             'topic' => 'about',
+            'topicName' => '关于我们',
             'categories' => $treeCategories,
             'data' => $data,
             'categoryId' => $articleId,
+            'route' => $route,
         ];
 
         return view('home/about', $data);
+    }
+
+    private function getRouteInfo($categories, $categoryId)
+    {
+        $id = $title = '';
+        foreach($categories as $category) {
+            if ($category['id'] == $categoryId) {
+                $id    = $category['id'];
+                $title = $category['name'];
+            }
+        }
+
+        return [
+            'id' => $id,
+            'title' => $title,
+        ];
     }
 }
 

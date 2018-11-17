@@ -68,9 +68,9 @@
                     <img class="icon1" src="../image/product/icon1.png" alt="">
                     <a href="/">首页</a>
                     <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/product/product153.html">产品展示</a>
+                    <a href="/product/product153.html">{{$topicName}}</a>
                     <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/product/product6.html" class="text">射频、微波信号产生与分析</a>
+                    <a href="/product/{{$type}}{{$route['id']}}.html" class="text">{{$route['title']}}</a>
                 </p>
                 @if($type == 'type')
                     <?php
