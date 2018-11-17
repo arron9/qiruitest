@@ -70,7 +70,7 @@
                     <img class="icon1" src="../image/product/icon2.png" alt="">
                     <a href="/product/product153.html">{{$topicName}}</a>
                     <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/product/{{$type}}{{$route['id']}}.html" class="text">{{$route['title']}}</a>
+                    <a href="/product/{{$type}}{{$route->id}}.html" class="text">{{$route->name}}</a>
                 </p>
                 @if($type == 'type')
                     <?php
@@ -96,14 +96,13 @@
                         @endforeach
                     </ul>
                     <ul class="num-list" style="width: 45px; margin-left: -17.5px;">
-
                         <div id="paging1_plHave" class="pagectrl">
                             <!--頁碼-->
-
+                            <li><a href="download-10-1.html">&lt;</a></li>
                             <li class="active"><a href="/product/product-116-1.html" class="cur">1</a></li> 
+                            <li><a href="download-10-3.html">&gt;</a></li>
                             <!--頁碼-->
                         </div>
-
                         <div class="clear"></div>
                     </ul>
                 @else 

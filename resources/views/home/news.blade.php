@@ -19,7 +19,7 @@
                 <img class="icon1" src="../image/product/icon1.png" alt="">
                 <a href="/">首页</a>
                 <img class="icon1" src="../image/product/icon2.png" alt="">
-                <a href="/news/{{$type}}{{$route['id']}}.html" class="type" data-id="8">{{$route['title']}}</a>
+                <a href="/news/{{$type}}{{$route->id}}.html" class="type" data-id="{{$route->id}}">{{$route->name}}</a>
             </p>
             @if($type == 'news')
             <ul class="list-data enterprise">

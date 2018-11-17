@@ -7,48 +7,66 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller 
 {
+    private $id;
+    private $routeInfo;
+    private $treeCategories;
+    private $topic;
+
+    public function __construct(Request $request) 
+    {
+        $topic = $request->segment(1);
+        if (!$topic) {
+            $this->topic = 'index';
+        }
+
+        $this->topic = str_replace('.html', '', $topic);
+
+        $category       = new Category;
+        $parentCategory = $category->getCategoryByKey($this->topic);
+        $parentId = $parentCategory->id;
+
+        $secondParam = $request->segment(2);
+        if ($secondParam == null) {
+            $this->route = $category->getCategoryByPid($parentId);
+        } else {
+            preg_match("/[a-z]+([0-9]+).html$/", $secondParam, $urlInfo);
+            $this->route = $category->getCategoryById($urlInfo[1]);
+        } 
+
+        $this->id = $this->route->id;
+
+        $this->treeCategories = $category->getTreeCategoryByPid($parentId);
+    }
+
     /*
      * 首页
      */
-    public  function index(Request $request, $pageId = 4, $categoryId = 5) 
+    public  function index(Request $request) 
     {
         $data = [
-            'topic' => '',
+            'topic' => 'index',
         ];
 
         return view('home/index', $data);
     }
 
-
     /*
      * 解决方案类型
      */
-    public function solve(Request $request, $articleId = 0) 
+    public function solve(Request $request, $id = 0) 
     {
-        $category = new Category;
-        $categories = $category->orderBy('weight', 'desc')
-            ->get()->toArray();
-
-        $treeCategories = buildTree($categories, 2);
-
-        $content = '';
-        if ($articleId == 0) {
-            //TODO 获取当前大类下权重最大的分类id
-            $articleId = 5; 
-        }
-
-        $route = $this->getRouteInfo($categories, $articleId);
-
+        $id = $this->id;
         $data = [];
-        $article = Article::where('category_id', $articleId)
+        $article = Article::where('category_id', $id)
             ->first();
+
         if ($article) {
             $data = $article->toArray();
         }
 
         $type = 'parent';
         $routeTopic = 'solve';
-        if (str_replace('solve/', '', $request->path()) == "s{$articleId}.html") {
+        if (str_replace('solve/', '', $request->path()) == "s{$id}.html") {
             $type = 'child';
             $routeTopic = 's';
         }
@@ -56,11 +74,11 @@ class HomeController extends Controller
         $data = [
             'topic' => 'solve',
             'topicName' => '解决方案',
-            'categories' => $treeCategories,
+            'categories' => $this->treeCategories,
             'data' => $data,
-            'categoryId' => $articleId,
+            'categoryId' => $id,
             'type' => $type,
-            'route' => $route,
+            'route' => $this->route,
             'routeTopic' => $routeTopic,
         ];
 
@@ -70,47 +88,50 @@ class HomeController extends Controller
     /*
      * 产品展示
      */
-    public function product(Request $request, $articleId = 0) 
+    public function product(Request $request, $id = 0) 
     {
-        $category = new Category;
-        $categories = $category->orderBy('weight', 'desc')
-            ->get()->toArray();
-
-        $treeCategories = buildTree($categories, 1);
-
-        if ($articleId == 0) {
-            //TODO 获取当前大类下权重最大的分类id
-            $articleId = 5; 
+        $id = $this->id;
+        $limit = 10;
+        $page = $request->input('page', 1);
+        if ($page <= 0) {
+            $page = 1;
         }
 
         $data = [];
-        if (str_replace('product/', '', $request->path()) == "type{$articleId}.html") {
+        $totalCount = 0;
+        if (str_replace('product/', '', $request->path()) == "type{$id}.html") {
             $type = 'type';
-            $article = Article::where('category_id', $articleId)
+            $article = Article::where('category_id', $id)
                 ->first();
-        } else if (str_replace('product/', '', $request->path()) == "detail{$articleId}.html"){
+        } else if (str_replace('product/', '', $request->path()) == "detail{$id}.html"){
             $type = 'detail';
-            $article = Article::where('id', $articleId)
+            $article = Article::where('id', $id)
                 ->first();
         } else {
             $type = 'product';
-            $article = Article::where('category_id', $articleId)
+            $article = Article::where('category_id', $id)
+                ->limit($limit, ($page - 1) * $limit)
                 ->get();
+
+            $totalCount = Article::where('category_id', $id)
+                ->count();
         } 
 
-        $route = $this->getRouteInfo($categories, $articleId);
         if ($article) {
             $data = $article->toArray();
         }
 
         $data = [
             'topic' => 'product',
-            'topicName' => '解决方案',
-            'categories' => $treeCategories,
+            'topicName' => '产品展示',
+            'categories' => $this->treeCategories,
             'data' => $data,
             'type' => $type,
-            'categoryId' => $articleId,
-            'route' => $route,
+            'categoryId' => $id,
+            'route' => $this->route,
+            'totalCount' => $totalCount,
+            'limit' => $limit,
+            'currentpage' => $page,
         ];
 
         return view('home/product', $data);
@@ -120,22 +141,11 @@ class HomeController extends Controller
     /*
      * 技术支持
      */
-    public function service(Request $request, $articleId = 0) 
+    public function service(Request $request, $id = 0) 
     {
-        $category = new Category;
-        $categories = $category->orderBy('weight', 'desc')
-            ->get()->toArray();
+        $id = $this->id;
 
-        $treeCategories = buildTree($categories, 3);
-
-        $content = '';
-        if ($articleId == 0) {
-            //TODO 获取当前大类下权重最大的分类id
-            $articleId = 5; 
-        }
-
-        $route = $this->getRouteInfo($categories, $articleId);
-        $article = Article::where('category_id', $articleId)
+        $article = Article::where('category_id', $id)
             ->first();
         $data = [];
         if ($article) {
@@ -145,10 +155,10 @@ class HomeController extends Controller
         $data = [
             'topic' => 'service',
             'topicName' => '技术支持',
-            'categories' => $treeCategories,
+            'categories' => $this->treeCategories,
             'data' => $data,
-            'categoryId' => $articleId,
-            'route' => $route,
+            'categoryId' => $id,
+            'route' => $this->route,
         ];
 
         return view('home/service', $data);
@@ -157,28 +167,18 @@ class HomeController extends Controller
     /*
      * 新闻中心
      */
-    public function news(Request $request, $articleId = 0) 
+    public function news(Request $request, $id = 0) 
     {
-
-        $category = new Category;
-        $categories = $category->orderBy('weight', 'desc')
-            ->get()->toArray();
-
-        $treeCategories = buildTree($categories, 4);
-
-        if ($articleId == 0) {
-            //TODO 获取当前大类下权重最大的分类id
-            $articleId = 5; 
-        }
+        $id = $this->id;
 
         $data = [];
-         if (str_replace('news/', '', $request->path()) == "detail{$articleId}.html"){
+         if (str_replace('news/', '', $request->path()) == "detail{$id}.html"){
             $type = 'detail';
-            $article = Article::where('id', $articleId)
+            $article = Article::where('id', $id)
                 ->first();
         } else {
             $type = 'news';
-            $article = Article::where('category_id', $articleId)
+            $article = Article::where('category_id', $id)
                 ->get();
         } 
 
@@ -186,16 +186,14 @@ class HomeController extends Controller
             $data = $article->toArray();
         }
 
-        $route = $this->getRouteInfo($categories, $articleId);
-
         $data = [
             'topic' => 'news',
             'topicName' => '新闻中心',
-            'categories' => $treeCategories,
+            'categories' => $this->treeCategories,
             'data' => $data,
             'type' => $type,
-            'categoryId' => $articleId,
-            'route' => $route
+            'categoryId' => $this->id,
+            'route' => $this->route
         ];
 
         return view('home/news', $data);
@@ -204,55 +202,28 @@ class HomeController extends Controller
     /*
      * 关于我们
      */
-    public function about(Request $request, $articleId = 0) 
+    public function about(Request $request, $id = 0) 
     {
-        $category = new Category;
-        $categories = $category->orderBy('weight', 'desc')
-            ->get()->toArray();
-
-        $treeCategories = buildTree($categories, 8);
-
-        $content = '';
-        if ($articleId == 0) {
-            //TODO 获取当前大类下权重最大的分类id
-            $articleId = 5; 
-        }
-
-        $article = Article::where('category_id', $articleId)
+        $id = $this->id;
+        $article = Article::where('category_id', $id)
             ->first();
         $data = [];
         if ($article) {
             $data = $article->toArray();
         }
 
-        $route = $this->getRouteInfo($categories, $articleId);
         $data = [
             'topic' => 'about',
             'topicName' => '关于我们',
-            'categories' => $treeCategories,
+            'categories' => $this->treeCategories,
             'data' => $data,
-            'categoryId' => $articleId,
-            'route' => $route,
+            'categoryId' => $id,
+            'route' => $this->route,
         ];
 
         return view('home/about', $data);
     }
 
-    private function getRouteInfo($categories, $categoryId)
-    {
-        $id = $title = '';
-        foreach($categories as $category) {
-            if ($category['id'] == $categoryId) {
-                $id    = $category['id'];
-                $title = $category['name'];
-            }
-        }
-
-        return [
-            'id' => $id,
-            'title' => $title,
-        ];
-    }
 }
 
 

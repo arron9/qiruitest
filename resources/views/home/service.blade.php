@@ -21,7 +21,7 @@
                     <img class="icon1" src="../image/product/icon2.png" alt="">
                     <a href="/service.html">{{$topicName}}</a>
                     <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/service/service{{$route['id']}}.html" class="text">{{$route['title']}}</a>
+                    <a href="/service/service{{$route->id}}.html" class="text">{{$route->name}}</a>
                 </p>
                 <div class="business-content">
                     <?php

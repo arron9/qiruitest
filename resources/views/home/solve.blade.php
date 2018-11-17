@@ -41,7 +41,7 @@
                 <img class="icon1" src="../image/product/icon2.png" alt="">
                 <a href="/solve.html">{{$topicName}}</a>
                 <img class="icon1" src="../image/product/icon2.png" alt="">
-                <a href="/solve/{{$routeTopic}}{{$route['id']}}.html" class="text" data-id="{{$route['title']}}" id="typeid">{{$route['title']}}</a>
+                <a href="/solve/{{$routeTopic}}{{$route->id}}.html" class="text" data-id="{{$route->id}}" id="typeid">{{$route->name}}</a>
             </p>
             @if($type == 'parent')
                 <div class="business-content">

@@ -27,7 +27,7 @@
             <img class="icon1" src="../image/product/icon2.png" alt="">
             <a href="/about.html">{{$topicName}}</a>
             <img class="icon1" src="../image/product/icon2.png" alt="">
-            <a href="/about/about{{$route['id']}}.html" class="text">{{$route['title']}}</a>
+            <a href="/about/about{{$route->id}}.html" class="text">{{$route->name}}</a>
             </p>
             <div class="about-content">
                 <div class="company-profile">
