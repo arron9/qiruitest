@@ -47,4 +47,6 @@ Route::group([
     $router->post('/recommend/create', 'RecommendController@create');
     $router->get('/recommend/{id}/edit', 'RecommendController@edit');
     $router->post('/recommend/{id}/edit', 'RecommendController@edit');
+
+    $router->get('/recommend/articles', 'RecommendController@articles');
 });
