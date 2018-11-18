@@ -33,4 +33,18 @@ Route::group([
 
     //图片上传
     $router->post('/article/ckeditorUploadImg', 'ArticleController@ckeditorUploadImg');
+
+    //推荐位管理
+    $router->get('/position', 'PositionController@index');
+    $router->get('/position/create', 'PositionController@create');
+    $router->post('/position/create', 'PositionController@create');
+    $router->get('/position/{id}/edit', 'PositionController@edit');
+    $router->post('/position/{id}/edit', 'PositionController@edit');
+
+    //推荐资源管理
+    $router->get('/recommend', 'RecommendController@index');
+    $router->get('/recommend/create', 'RecommendController@create');
+    $router->post('/recommend/create', 'RecommendController@create');
+    $router->get('/recommend/{id}/edit', 'RecommendController@edit');
+    $router->post('/recommend/{id}/edit', 'RecommendController@edit');
 });

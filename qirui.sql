@@ -455,7 +455,7 @@ DROP TABLE IF EXISTS `recommend`;
 CREATE TABLE `recommend` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position_id` varchar(32) NOT NULL COMMENT '推荐位置',
-  `type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型: 1 新闻, 2 产品, 3 其它',
+  `type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型: 1 文章 2 图片 3其它',
   `itemid` int(10) NOT NULL COMMENT '对应id',
   `weight` int(10) NOT NULL COMMENT '权重',
   `title` varchar(128) NOT NULL COMMENT '标题',
