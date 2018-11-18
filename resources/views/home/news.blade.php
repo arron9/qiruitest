@@ -43,15 +43,14 @@
             <ul class="num-list">
                 
 <div id="paging1_plHave" class="pagectrl">
-	
     <!--頁碼-->
-     
-    
-    <li class="active"><a href="news-8-1.html" class="cur">1</a></li> <li><a href="news-8-2.html">2</a></li> <li><a href="news-8-3.html">3</a></li> <li><a href="news-8-4.html">4</a></li> <li><a href="news-8-5.html">5</a></li> 
-    
+    @for($i = 1; $i <= $pages; $i++)
+    <li class="{{$currentpage == $i?'active':''}}">
+        <a href="news/news{{$categoryId}}.html?page={{$i}}" class="cur">{{$i}}</a>
+    </li>  
+    @endfor
     <li><a href="news-8-2.html">></a></li> 
     <!--頁碼-->
-
 </div>
                 <div class="clear"></div>
             </ul>

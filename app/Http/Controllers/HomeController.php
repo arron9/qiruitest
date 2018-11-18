@@ -17,25 +17,24 @@ class HomeController extends Controller
         $topic = $request->segment(1);
         if (!$topic) {
             $this->topic = 'index';
-        }
-
-        $this->topic = str_replace('.html', '', $topic);
-
-        $category       = new Category;
-        $parentCategory = $category->getCategoryByKey($this->topic);
-        $parentId = $parentCategory->id;
-
-        $secondParam = $request->segment(2);
-        if ($secondParam == null) {
-            $this->route = $category->getCategoryByPid($parentId);
         } else {
-            preg_match("/[a-z]+([0-9]+).html$/", $secondParam, $urlInfo);
-            $this->route = $category->getCategoryById($urlInfo[1]);
-        } 
+            $this->topic = str_replace('.html', '', $topic);
+            $category       = new Category;
+            $parentCategory = $category->getCategoryByKey($this->topic);
+            $parentId = $parentCategory->id;
 
-        $this->id = $this->route->id;
+            $secondParam = $request->segment(2);
+            if ($secondParam == null) {
+                $this->route = $category->getCategoryByPid($parentId);
+            } else {
+                preg_match("/[a-z]+([0-9]+).html$/", $secondParam, $urlInfo);
+                $this->route = $category->getCategoryById($urlInfo[1]);
+            } 
 
-        $this->treeCategories = $category->getTreeCategoryByPid($parentId);
+            $this->id = $this->route->id;
+
+            $this->treeCategories = $category->getTreeCategoryByPid($parentId);
+        }
     }
 
     /*
@@ -91,7 +90,7 @@ class HomeController extends Controller
     public function product(Request $request, $id = 0) 
     {
         $id = $this->id;
-        $limit = 10;
+        $limit = 1;
         $page = $request->input('page', 1);
         if ($page <= 0) {
             $page = 1;
@@ -110,7 +109,8 @@ class HomeController extends Controller
         } else {
             $type = 'product';
             $article = Article::where('category_id', $id)
-                ->limit($limit, ($page - 1) * $limit)
+                ->offset(($page - 1) * $limit)
+                ->limit($limit)
                 ->get();
 
             $totalCount = Article::where('category_id', $id)
@@ -129,8 +129,7 @@ class HomeController extends Controller
             'type' => $type,
             'categoryId' => $id,
             'route' => $this->route,
-            'totalCount' => $totalCount,
-            'limit' => $limit,
+            'pages' => $totalCount/$limit,
             'currentpage' => $page,
         ];
 
@@ -170,6 +169,11 @@ class HomeController extends Controller
     public function news(Request $request, $id = 0) 
     {
         $id = $this->id;
+        $limit = 1;
+        $page = $request->input('page', 1);
+        if ($page <= 0) {
+            $page = 1;
+        }
 
         $data = [];
          if (str_replace('news/', '', $request->path()) == "detail{$id}.html"){
@@ -179,7 +183,12 @@ class HomeController extends Controller
         } else {
             $type = 'news';
             $article = Article::where('category_id', $id)
+                ->offset(($page - 1) * $limit)
+                ->limit($limit)
                 ->get();
+
+            $totalCount = Article::where('category_id', $id)
+                ->count();
         } 
 
         if ($article) {
@@ -193,7 +202,9 @@ class HomeController extends Controller
             'data' => $data,
             'type' => $type,
             'categoryId' => $this->id,
-            'route' => $this->route
+            'route' => $this->route,
+            'pages' => $totalCount/$limit,
+            'currentpage' => $page,
         ];
 
         return view('home/news', $data);
