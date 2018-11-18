@@ -166,7 +166,7 @@ class RecommendController extends Controller
     public function edit(Request $request, $id)
     {
         $recommend= Recommend::find($id);
-    if ($request->isMethod('post')) {
+        if ($request->isMethod('post')) {
             $title = $request->input('title');
             $intro = $request->input('intro');
             $itemid = $request->input('itemid');
@@ -191,7 +191,6 @@ class RecommendController extends Controller
                 $itemid = 0;
             }
             $recommend->itemid     = $itemid;
-
             $recommend->position_id = $positionId;
             $recommend->status     = $status;
             $recommend->target_url  = $targetUrl;
@@ -199,7 +198,7 @@ class RecommendController extends Controller
             $recommend->weight     = $weight;
             $recommend->created_at = $date;
             $recommend->updated_at = $date;
-            $recommend->save();
+            $recommend->update();
         }  
 
         $grid = Admin::form(Recommend::class, function(Form $form) use ($id, $recommend){
@@ -209,12 +208,12 @@ class RecommendController extends Controller
             $positions = Position::getPositions();
             $form->select('position_id', '推荐位')->options($positions)->value($recommend->position_id);
 
-/*             $types = [ */
+            /*             $types = [ */
             //     '1' => '文章',
             //     '2' => '图片'
             // ];
             // $form->radio('type', '资源类型')->options($types);
-            $form->select('itemid', '推荐文章')->options(function ($id) {
+            $form->select('itemid', '推荐文章')->options(function($id) {
                 $article = Article::find($id);
                 if ($article) {
                     return [$article->id => $article->name];
