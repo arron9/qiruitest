@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Position;
+use App\Models\Recommend;
 use App\Models\Category;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -42,8 +44,23 @@ class HomeController extends Controller
      */
     public  function index(Request $request) 
     {
+        $topic = 'index';
+        $position = new Position;
+        $parentPosition = $position->getPositionByKey($topic);
+        $positionItems = $position->getPositionsByPid($parentPosition->id);
+
+        $recommend = new Recommend;
+        $recommendItems = $recommend->getRecommendsByPositionIds(array_keys($positionItems));
+        $data = [];
+        foreach($recommendItems as $recommendItem) {
+            $positionId = $recommendItem->position_id;
+            $key = $positionItems[$positionId];
+            $data[$key][] = $recommendItem;
+        }
+
         $data = [
-            'topic' => 'index',
+            'topic' => $topic,
+            'data' => $data,
         ];
 
         return view('home/index', $data);

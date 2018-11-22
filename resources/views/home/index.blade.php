@@ -61,91 +61,33 @@
 
             </li>
 
-            <li class="list" data-id="12">
+            @foreach($data['solution'] as $solution) 
+            <li class="list" data-id="{{$solution['id']}}">
                 <span>
                     <img src="image/icon1.png" alt="">
                 </span>
                 <a href="javascript:;">
-                    <p class="cn">射频与微波测试系统</p>
+                    <p class="cn">{{$solution['title']}}</p>
                 </a>
                 <img class="triangle" src="image/triangle.png" alt="">
             </li>
-
-            <li class="list" data-id="13">
-                <span>
-                    <img src="image/icon1.png" alt="">
-                </span>
-                <a href="javascript:;">
-                    <p class="cn">功率电子测试系统</p>
-                </a>
-                <img class="triangle" src="image/triangle.png" alt="">
-            </li>
-
-            <li class="list" data-id="20">
-                <span>
-                    <img src="image/icon1.png" alt="">
-                </span>
-                <a href="javascript:;">
-                    <p class="cn">数字、模拟高速信号测试系统</p>
-                </a>
-                <img class="triangle" src="image/triangle.png" alt="">
-            </li>
-
-        </ul>
-        <ul class="solution solution-app">
-            <li class="title">
-                <a href="#">
-                    <img src="image/solution.png" alt="">
-                </a>
-            </li>
-
-            <li class="list" data-id="12">
-                <span>
-                    <img src="image/icon1.png" alt="">
-                </span>
-                <a href="/solve/solve12.html">
-                    <p class="cn">射频与微波测试系统</p>
-                </a>
-                <img class="triangle" src="image/triangle.png" alt="">
-            </li>
-
-            <li class="list" data-id="13">
-                <span>
-                    <img src="image/icon1.png" alt="">
-                </span>
-                <a href="/solve/solve13.html">
-                    <p class="cn">功率电子测试系统</p>
-                </a>
-                <img class="triangle" src="image/triangle.png" alt="">
-            </li>
-
-            <li class="list" data-id="20">
-                <span>
-                    <img src="image/icon1.png" alt="">
-                </span>
-                <a href="/solve/solve20.html">
-                    <p class="cn">数字、模拟高速信号测试系统</p>
-                </a>
-                <img class="triangle" src="image/triangle.png" alt="">
-            </li>
-
+            @endforeach
         </ul>
         <div class="detailed-box">
+            @foreach($data['solution'] as $key => $solution)
             <div class="detailed">
-
-                <h1>射频与微波测试系统</h1>
+                <h1>{{$data['solution'][0]['title']}}</h1>
                 <div class="line"></div>
-                <p>在技术不断进步的同时，雷达侦察、躲避、电子战和反对抗甚至民用无线通信领域等方面的挑战也日益严峻。目前在任何情况下系统测试将会受益于高性能的测试设备——模拟和矢量信号发生器、频谱分析仪、矢量信号分析仪和矢量网络分析仪等。从使用多个发射机仿真到雷达的前导波，到测试接收机中的精密元件，盛铂科技解决方案都能满足所有这些复杂的雷达和电子战以及无线通信应用的需求。</p>
+                <p>{{$data['solution'][0]['intro']}}</p>
                 <span class="img1">
-                    <img src="/uploads/20170406/20170406164522589.jpg" alt="">
+                    <img src="/uploads/{{$data['solution'][0]['cover']}}" alt="">
                 </span>
-                <a href="/solve/solve12.html" class="more" target="_blank">MORE</a>
+                <a href="/solve/solve{{$data['solution'][0]['itemid']}}.html" class="more" target="_blank">MORE</a>
                 <div class="text-bg">
                     <img src="image/text1.png" alt="">
                 </div>
-
             </div>
-
+            @endforeach
         </div>
         <div class="clear"></div>
     </div>
@@ -351,6 +293,7 @@ $(function () {
         $(this).addClass('active').siblings().removeClass('active');
         var detail = $(".detailed");
         $(".detailed").children().remove();
+        detail.append("<h1>" + data.list[i].TypeName + "</h1><div class=\"line\"></div><p>" + data.list[i].TypeDesc + "</p><span class=\"img1\"><img src=\"" + data.list[i].UpLoadID + "\" alt=\"\"></span><a href=\"/solve/index.aspx?TypeID=" + data.list[i].TypeID + "\" class=\"more\" target=\"_blank\">MORE</a><div class=\"text-bg\"><img src=\"image/text1.png\" alt=\"\"></div>");
         $.ajax({
             url: "ashx/gettype.ashx?TypeID=" + TypeID,
             type: "get",

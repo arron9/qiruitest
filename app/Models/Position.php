@@ -18,4 +18,21 @@ class Position extends Model
 
         return $items;
     }
+
+    public function getPositionByKey($key) {
+        return Position::where("key", $key)->first();
+    }
+
+    public function getPositionsByPid($pid) {
+        $items = Position::where("pid", $pid)->get();
+        $data = [];
+        if ($items) {
+            foreach($items as $item) {
+                $data[$item->id] = $item->key;
+            }
+        }
+
+        return $data;
+    }
+
 }
