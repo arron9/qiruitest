@@ -371,15 +371,7 @@
                         <a class="title" href="/service/service6.html" target="_blank">技术服务</a>
                     </li>
                     <li>
-                        <p class="num">04.</p>
-                        <a href="/download/download10.html" target="_blank"  class="title">支持与下载</a>
-                    </li>
-                    <li>
-                        <p class="num">05.</p>
-                        <a href="/recruitment/recruitment.html" target="_blank"  class="title">人才招聘</a>
-                    </li>
-                    <li>
-                        <p class="num">06.</p>
+                        <p class="num">6.</p>
                         <a href="/aboutus/index.html" target="_blank" class="title">关于我们</a>
                     </li>
                 <li class="clear"></li>

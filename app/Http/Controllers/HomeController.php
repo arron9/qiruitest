@@ -13,14 +13,21 @@ class HomeController extends Controller
     private $routeInfo;
     private $treeCategories;
     private $topic;
+    private $positionItem;
+    private $position;
 
     public function __construct(Request $request) 
     {
+        $this->position = new Position;
+
         $topic = $request->segment(1);
         if (!$topic) {
             $this->topic = 'index';
         } else {
             $this->topic = str_replace('.html', '', $topic);
+
+            $this->positionItem = $this->position->getPositionByKey($this->topic.'-banner');
+
             $category       = new Category;
             $parentCategory = $category->getCategoryByKey($this->topic);
             $parentId = $parentCategory->id;
@@ -45,9 +52,8 @@ class HomeController extends Controller
     public  function index(Request $request) 
     {
         $topic = 'index';
-        $position = new Position;
-        $parentPosition = $position->getPositionByKey($topic);
-        $positionItems = $position->getPositionsByPid($parentPosition->id);
+        $parentPosition = $this->position->getPositionByKey($topic);
+        $positionItems = $this->position->getPositionsByPid($parentPosition->id);
 
         $recommend = new Recommend;
         $recommendItems = $recommend->getRecommendsByPositionIds(array_keys($positionItems));
@@ -99,6 +105,7 @@ class HomeController extends Controller
             'categories' => $this->treeCategories,
             'data' => $data,
             'categoryId' => $id,
+            'position' => $this->positionItem,
             'type' => $type,
             'route' => $this->route,
             'routeTopic' => $routeTopic,
@@ -149,6 +156,7 @@ class HomeController extends Controller
             'topicName' => '产品展示',
             'categories' => $this->treeCategories,
             'data' => $data,
+            'position' => $this->positionItem,
             'type' => $type,
             'categoryId' => $id,
             'route' => $this->route,
@@ -180,6 +188,7 @@ class HomeController extends Controller
             'categories' => $this->treeCategories,
             'data' => $data,
             'categoryId' => $id,
+            'position' => $this->positionItem,
             'route' => $this->route,
         ];
 
@@ -225,6 +234,7 @@ class HomeController extends Controller
             'data' => $data,
             'type' => $type,
             'categoryId' => $this->id,
+            'position' => $this->positionItem,
             'route' => $this->route,
             'pages' => $totalCount/$limit,
             'currentpage' => $page,
@@ -252,6 +262,7 @@ class HomeController extends Controller
             'categories' => $this->treeCategories,
             'data' => $data,
             'categoryId' => $id,
+            'position' => $this->positionItem,
             'route' => $this->route,
         ];
 

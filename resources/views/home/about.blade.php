@@ -4,7 +4,7 @@
 @extends('layouts.layout')
 @section('content')
     <div class="banner">
-        <img src="../image/about/banner1.png" alt="">
+        <img src="/uploads/{{$position->cover}}" alt="">
     </div>
     <div class="banner-bg"></div>
     <div class="content">
