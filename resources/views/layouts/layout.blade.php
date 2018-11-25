@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="Keywords" content="@yield('Keywords')" />
-    <meta name="Description" content="@yield('description')" />
+    <meta name="Keywords" content="骐锐科技-Sample上下变频器，Venable频率响应分析仪，Boonton射频微波功率计，Noisecom噪声信号发生器，Transmile多功能校准仪,Anapico相噪分析仪" />
+    <meta name="Description" content="骐锐科技（上海）有限公司专业提供Sample上|下变频器，Venable频率响应分析仪，Boonton射频微波功率计，Noisecom噪声信号发生器，Transmile多功能校准仪,Anapico相噪分析仪等电子测试测量仪器。" />
     <meta charset="UTF-8" />
     <meta name="baidu-site-verification" content="H9npxnQckW" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
     <title>
-        @yield('title')
+        骐锐科技-@yield('title')
     </title>
 <link href="/css/style.css" rel="stylesheet" />
 <link href="/css/swiper.min.css" rel="stylesheet" />

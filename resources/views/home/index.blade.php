@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('title', '首页')
+@section('keywords', '首页')
+@section('description', '首页')
 @section('content')
     <style>
     .detailHidden {

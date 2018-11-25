@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('title', '技术服务')
+@section('keywords', '技术服务')
+@section('description', '技术服务')
 @section('content')
         <div class="banner">
         <img src="/uploads/{{$position->cover}}" alt="">
