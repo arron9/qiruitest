@@ -22,7 +22,7 @@
 </div>
         
 <div class="header">
-    <a href="../index.aspx" class="logo">
+    <a href="/" class="logo">
         <img src="/image/logo.png" alt="">
     </a>
     <div class="nav-box">
@@ -126,8 +126,8 @@
                         <a class="img" href="tencent://message/?uin=2578940051&Site=网站地址&Menu=yes">
                             <img src="../image/icon-three.png" alt="">
                         </a>
-                        <p class="icon-title">立即聊天</p>
-                        <p>与盛铂代表实时聊天。服务时间：上午 9:00 – 下午 5:30。</p>
+                        <p class="icon-title">微信联系</p>
+                        <p><img src="../image/QR_code.jpg" alt=""></p>
                     </div>
                     <div class="pull-list marketing">
                         <a class="img" href="#">
