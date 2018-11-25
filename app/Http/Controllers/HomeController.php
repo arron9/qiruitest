@@ -120,7 +120,7 @@ class HomeController extends Controller
     public function product(Request $request, $id = 0) 
     {
         $id = $this->id;
-        $limit = 1;
+        $limit = 10;
         $page = $request->input('page', 1);
         if ($page <= 0) {
             $page = 1;
@@ -160,7 +160,7 @@ class HomeController extends Controller
             'type' => $type,
             'categoryId' => $id,
             'route' => $this->route,
-            'pages' => $totalCount/$limit,
+            'pages' => ceil($totalCount/$limit),
             'currentpage' => $page,
         ];
 
@@ -201,14 +201,15 @@ class HomeController extends Controller
     public function news(Request $request, $id = 0) 
     {
         $id = $this->id;
-        $limit = 1;
+        $limit = 10;
         $page = $request->input('page', 1);
         if ($page <= 0) {
             $page = 1;
         }
 
         $data = [];
-         if (str_replace('news/', '', $request->path()) == "detail{$id}.html"){
+        $totalCount = 1;
+        if (str_replace('news/', '', $request->path()) == "detail{$id}.html"){
             $type = 'detail';
             $article = Article::where('id', $id)
                 ->first();
@@ -236,7 +237,7 @@ class HomeController extends Controller
             'categoryId' => $this->id,
             'position' => $this->positionItem,
             'route' => $this->route,
-            'pages' => $totalCount/$limit,
+            'pages' => ceil($totalCount/$limit),
             'currentpage' => $page,
         ];
 

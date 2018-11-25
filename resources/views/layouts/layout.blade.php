@@ -360,19 +360,19 @@
             <ul class="list">
                     <li>
                         <p class="num">01.</p>
-                        <a  href="/solve/solve12.html" target="_blank" class="title">解决方案</a>
+                        <a  href="/solve.html" target="_blank" class="title">解决方案</a>
                     </li>
                     <li>
                         <p class="num">02.</p>
-                        <a href="/product/product153.html" target="_blank"  class="title">产品展示</a>
+                        <a href="/product.html" target="_blank"  class="title">产品展示</a>
                     </li>
                     <li>
                         <p class="num">03.</p>
-                        <a class="title" href="/service/service6.html" target="_blank">技术服务</a>
+                        <a class="title" href="/service.html" target="_blank">技术服务</a>
                     </li>
                     <li>
-                        <p class="num">6.</p>
-                        <a href="/aboutus/index.html" target="_blank" class="title">关于我们</a>
+                        <p class="num">04.</p>
+                        <a href="/about.html" target="_blank" class="title">关于我们</a>
                     </li>
                 <li class="clear"></li>
             </ul>

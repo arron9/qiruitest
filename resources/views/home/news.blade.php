@@ -57,7 +57,7 @@
                 <div class="detailed-content">
                 <div class="detailed-title">
                     <a class="return" href="javascript:history.back(-1);">
-                        <img src="../image/about/icon2.png" alt="">
+                        <img src="../image/icon/back.png" alt="">
                         返回
                     </a>
                     {{$data['title']}}
@@ -70,10 +70,6 @@
                         echo html_entity_decode($data['content'], 1);
                     }
                 ?>
-                <div class="page">
-                    <a class="prev" href="/news/s-0-8.html">上一篇：</a>
-                    <a class="next active" href="/news/s-1021-8.html">下一篇：Boonton峰值功率计使用统计方法测量似噪声信号</a>
-                </div>
             </div>
                 @endif
         </div>
