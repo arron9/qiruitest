@@ -28,7 +28,7 @@ class Position extends Model
         $data = [];
         if ($items) {
             foreach($items as $item) {
-                $data[$item->id] = $item->key;
+                $data[$item->id] = $item;
             }
         }
 

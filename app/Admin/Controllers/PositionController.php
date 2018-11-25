@@ -154,9 +154,8 @@ class PositionController extends Controller
                 $cover  = $request->input('pic');
             }
 
-            $date = date('Y-m-d H:i:s');
 
-            $position             = new Position;
+            $date = date('Y-m-d H:i:s');
             $position->key        = $key;
             $position->name       = $name;
             $position->cover      = $cover;
@@ -164,7 +163,6 @@ class PositionController extends Controller
             $position->url        = $url;
             $position->status     = $status;
             $position->pid        = $pid;
-            $position->created_at = $date;
             $position->updated_at = $date;
 
             $position->update();

@@ -27,14 +27,6 @@ class RecommendController extends Controller
                 return Position::find($positionId)->name;
             });
 
-            $grid->itemid('推荐文章标题')->display(function($itemid) {
-                if ($itemid == null) {
-                    return '';
-                }
-
-                return Article::find($itemid)->title;
-            });
-
             $grid->status('状态')->display(function ($status) {
                 switch ($status) {
                     case 1:
@@ -73,7 +65,7 @@ class RecommendController extends Controller
         if ($request->isMethod('post')) {
             $title = $request->input('title');
             $intro = $request->input('intro');
-            $itemid = $request->input('itemid');
+            //$itemid = $request->input('itemid');
             $positionId = $request->input('position_id');
             $status = $request->input('status') == 'on'? 0: 1;
             $targetUrl = $request->input('target_url');
@@ -93,11 +85,8 @@ class RecommendController extends Controller
             $recommend->title      = $title;
             $recommend->intro      = $intro;
             $recommend->type       = 1;
-            if ($itemid == null) {
-                $itemid = 0;
-            }
-            $recommend->itemid     = $itemid;
 
+            $recommend->itemid     = 0;
             $recommend->position_id = $positionId;
             $recommend->status     = $status;
             $recommend->target_url  = $targetUrl;
@@ -120,12 +109,12 @@ class RecommendController extends Controller
             //     '2' => '图片'
             // ];
             // $form->radio('type', '资源类型')->options($types);
-            $form->select('itemid', '推荐文章')->options(function ($id) {
-                $article = Article::find($id);
-                if ($article) {
-                    return [$article->id => $article->name];
-                }
-            })->ajax("/admin/recommend/articles");
+            /* $form->select('itemid', '推荐文章')->options(function ($id) { */
+                // $article = Article::find($id);
+                // if ($article) {
+                //     return [$article->id => $article->name];
+                // }
+            /* })->ajax("/admin/recommend/articles"); */
 
             $form->image('cover', '图片')->move('public/uploads/images/');
             $form->textarea('intro', '简介')->rows(10);
@@ -169,7 +158,7 @@ class RecommendController extends Controller
         if ($request->isMethod('post')) {
             $title = $request->input('title');
             $intro = $request->input('intro');
-            $itemid = $request->input('itemid');
+            // $itemid = $request->input('itemid');
             $positionId = $request->input('position_id');
             $status = $request->input('status') == 'on'? 0: 1;
             $targetUrl = $request->input('target_url');
@@ -187,10 +176,7 @@ class RecommendController extends Controller
             $recommend->title      = $title;
             $recommend->intro      = $intro;
             $recommend->type       = 1;
-            if ($itemid == null) {
-                $itemid = 0;
-            }
-            $recommend->itemid     = $itemid;
+            $recommend->itemid     = 0;
             $recommend->position_id = $positionId;
             $recommend->status     = $status;
             $recommend->target_url  = $targetUrl;
@@ -213,12 +199,12 @@ class RecommendController extends Controller
             //     '2' => '图片'
             // ];
             // $form->radio('type', '资源类型')->options($types);
-            $form->select('itemid', '推荐文章')->options(function($id) {
-                $article = Article::find($id);
-                if ($article) {
-                    return [$article->id => $article->name];
-                }
-            })->ajax("/admin/recommend/articles")->value($recommend->itemid);
+            /* $form->select('itemid', '推荐文章')->options(function($id) { */
+            //     $article = Article::find($id);
+            //     if ($article) {
+            //         return [$article->id => $article->name];
+            //     }
+            // })->ajax("/admin/recommend/articles")->value($recommend->itemid);
 
             $form->image('cover', '封面')->value($recommend->cover);
             $form->hidden('pic')->value($recommend->cover);

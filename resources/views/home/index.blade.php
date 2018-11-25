@@ -1,47 +1,22 @@
 @extends('layouts.layout')
 @section('content')
+    <style>
+    .detailHidden {
+        display:none
+    }
+    .detailShow {
+        display:block
+    }
+    </style>
     <div class="index-banner">
         <!--<img src="image/banner.png" alt="">-->
         <div class="swiper-container banner-img">
             <div class="swiper-wrapper">
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/product112.html">
-                    <img src="/uploads/20180227/20180227160432296.jpg" alt="">
+                @foreach($data['sliders'] as $slider)
+                <a class="swiper-slide" href="{{$slider['target_url']}}">
+                    <img src="/uploads/{{$slider['cover']}}" alt="">
                 </a>
-
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/product40.html">
-                    <img src="/uploads/20170406/20170406103433355.jpg" alt="">
-                </a>
-
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/p-162-109.html">
-                    <img src="/uploads/20170406/20170406103403698.jpg" alt="">
-                </a>
-
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/product138.html">
-                    <img src="/uploads/20170406/20170406093037964.jpg" alt="">
-                </a>
-
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/product139.html">
-                    <img src="/uploads/20170406/20170406103321339.jpg" alt="">
-                </a>
-
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/p-148-116.html">
-                    <img src="/uploads/20170406/20170406103856808.jpg" alt="">
-                </a>
-
-
-                <a class="swiper-slide" href="http://www.samplesci.com/product/product116.html">
-                    <img src="/uploads/20170406/20170406092836652.jpg" alt="">
-                </a>
-
-
-
-
+                @endforeach
             </div>
         </div>
         <a href="#" class="left">
@@ -56,9 +31,7 @@
     <div class="content">
         <ul class="solution">
             <li class="title">
-
                 <img src="image/solution.png" alt="">
-
             </li>
 
             @foreach($data['solution'] as $solution) 
@@ -75,14 +48,14 @@
         </ul>
         <div class="detailed-box">
             @foreach($data['solution'] as $key => $solution)
-            <div class="detailed">
-                <h1>{{$data['solution'][0]['title']}}</h1>
+            <div class="detailed {{$key != 0?'detailHidden':''}}" data-value="{{$solution['id']}}">
+                <h1>{{$solution['title']}}</h1>
                 <div class="line"></div>
-                <p>{{$data['solution'][0]['intro']}}</p>
+                <p>{{$solution['intro']}}</p>
                 <span class="img1">
-                    <img src="/uploads/{{$data['solution'][0]['cover']}}" alt="">
+                    <img src="/uploads/{{$solution['cover']}}" alt="">
                 </span>
-                <a href="/solve/solve{{$data['solution'][0]['itemid']}}.html" class="more" target="_blank">MORE</a>
+                <a href="{{$solution['target_url']}}" class="more" target="_blank">MORE</a>
                 <div class="text-bg">
                     <img src="image/text1.png" alt="">
                 </div>
@@ -96,43 +69,24 @@
             <img class="service-one" src="image/service1.png" alt="">
             <img class="service-two" src="image/service2.png" alt="">
         </div>
-        <p class="text">盛铂科技以满足客户需要为宗旨，注重与客户建立并发展长期的合作伙伴关系，为客户提供具有创新性的个性化的技术与服务解决方案</p>
+        <p class="text">{{$positions['service']['desc']}}</p>
     </div>
     <div class="service-content">
         <div class="half"></div>
         <ul class="service-list">
-
+            @foreach($data['service'] as $key => $service)
             <li>
-                <a href="/service/service6.html" target="_blank" class="">
+                <a href="{{$service['target_url']}}" target="_blank" class="">
                     <div class="service-list-img">
-                        <img src="/uploads/20170406/20170406093128652.png" alt="">
+                        <img src="/uploads/{{$service['cover']}}" alt="">
                     </div>
-                    <p class="transition-one">测试外包服务</p>
+                    <p class="transition-one">{{$service['title']}}</p>
                 </a>
             </li>
-
-            <li>
-                <a href="/service/service7.html" target="_blank" class="">
-                    <div class="service-list-img">
-                        <img src="/uploads/20170406/20170406093137230.png" alt="">
-                    </div>
-                    <p class="transition-one">产品维护及维修</p>
-                </a>
-            </li>
-
-            <li>
-                <a href="/service/service21.html" target="_blank" class="">
-                    <div class="service-list-img">
-                        <img src="/uploads/20170406/20170406093113589.png" alt="">
-                    </div>
-                    <p class="transition-one">产品与测试系统定制</p>
-                </a>
-            </li>
-
-
+            @endforeach
             <li class="clear"></li>
         </ul>
-        <a href="/service/service6.html" target="_blank" class="more">MORE>></a>
+        <a href="{{$positions['service']['url']}}" target="_blank" class="more">MORE>></a>
     </div>
     <div class="hr">
         <div class="hr-box">
@@ -148,135 +102,32 @@
                 <img src="image/news-text.png" alt="Alternate Text" />
             </div>
             <ul class="new">
-
+            @foreach($data['news'] as $key => $new)
                 <li>
-                    <a href="/news/s-1051-9.html">
+                    <a href="{{$new['target_url']}}">
                         <div class="img">
-                            <img src="/uploads/20180323/20180323111232752.jpg"/>
+                            <img src="/uploads/{{$new['cover']}}"/>
                         </div>
                         <div class="text">
-                            <div class="time">03-23-2018</div>
-                            <p>盛铂科技亮相EDICON2018,重磅推出新品！</p>
+                            <div class="time"><?php echo date('m-d-Y',strtotime($new['updated_at'])); ?></div>
+                            <p>{{$new['title']}}</p>
                         </div>
                     </a>
                 </li>
-
-                <li>
-                    <a href="/news/s-1050-9.html">
-                        <div class="img">
-                            <img src="/uploads/20180320/20180320131413632.JPG"/>
-                        </div>
-                        <div class="text">
-                            <div class="time">03-20-2018</div>
-                            <p>解码SAS信号采集存储分析仪X-Stream技术！</p>
-                        </div>
-                    </a>
-                </li>
-
-
+            @endforeach
             </ul>
-            <div class="swiper-container hrr">
-                <div class="swiper-wrapper">
-
-                    <a href="/recruitment/s998.html" target="_blank" class="swiper-slide li transition">
-                        <div class="num">01</div>
-                        <div class="le"></div>
-                        <div class="ri"></div>
-                        <h2>毫米波微波电路工程师</h2>
-                        <p class="text"></p>
-                        <span class="icon">
-                            <img class="one" src="image/icon4.png" alt="">
-                            <img class="two" src="image/icon6.png" alt="">
-                        </span>
-                    </a>
-
-                    <a href="/recruitment/s999.html" target="_blank" class="swiper-slide li transition">
-                        <div class="num">02</div>
-                        <div class="le"></div>
-                        <div class="ri"></div>
-                        <h2>射频工程师</h2>
-                        <p class="text"></p>
-                        <span class="icon">
-                            <img class="one" src="image/icon4.png" alt="">
-                            <img class="two" src="image/icon6.png" alt="">
-                        </span>
-                    </a>
-
-                    <a href="/recruitment/s1000.html" target="_blank" class="swiper-slide li transition">
-                        <div class="num">03</div>
-                        <div class="le"></div>
-                        <div class="ri"></div>
-                        <h2>客户经理</h2>
-                        <p class="text"></p>
-                        <span class="icon">
-                            <img class="one" src="image/icon4.png" alt="">
-                            <img class="two" src="image/icon6.png" alt="">
-                        </span>
-                    </a>
-
-                </div>
-            </div>
-            <div class="left-icon">
-                <img src="image/icon-left.png" alt="">
-            </div>
-            <div class="right-icon">
-                <img src="image/icon-right.png" alt="">
-            </div>
         </div>
         <div class="person">
             <img src="image/person.png" alt="">
         </div>
-    </div>
-    <div class="support">
-        <div class="support-title">
-            <img class="img-one" src="image/support-text.png" />
-            <img class="img-two" src="image/support-text1.png" />
-        </div>
-        <div class="support-box">
-            <ul>
-                <li>
-                    <a class="img" href="/download/download10.html">
-                        <img src="image/support-icon1.png" />
-                    </a>
-                    <p>产品说明及技术说明</p>
-                </li>
-                <li>
-                    <a class="img" href="/download/download11.html">
-                        <img src="image/support-icon2.png" />
-                    </a>
-                    <p>软件及固件</p>
-                </li>
-                <li>
-                    <a class="img" href="/download/download14.html">
-                        <img src="image/support-icon3.png" />
-                    </a>
-                    <p>产品技术指标</p>
-                </li>
-                <li class="margin-le18">
-                    <a class="img" href="/download/download15.html">
-                        <img src="image/support-icon4.png" />
-                    </a>
-                    <p>应用指南</p>
-                </li>
-                <li>
-                    <a class="img" href="/download/download23.html">
-                        <img src="image/support-icon5.png" />
-                    </a>
-                    <p>操作手册及编程指南</p>
-                </li>
-            </ul>
-        </div>
-
-        <div class="app-bg"></div>
     </div>
     <div class="about">
         <div class="en">
             <img src="image/about1.png" alt="">
         </div>
         <!--<div class="cn">关于我们</div>-->
-        <p>盛铂科技（上海）有限公司，成立于2013年3月18日，是注册于上海市漕河泾国家高新技术开发区的高新技术企业，注册资金687万。公司专业从事</p>
-        <p>射频微波测试测量技术的产品及应用研究，是集设备（硬件/软件）开发、生产、系统集成和技术服务于一体的现代高科技产业实体。</p>
-        <a href="/aboutus/index.html" target="_blank" class="more">MORE>></a>
+        <?php echo $positions['about']['desc']; ?>
+        <a href="{{$positions['about']['url']}}" target="_blank" class="more">MORE>></a>
         <div class="about-img">
             <img src="image/img5.png" alt="">
         </div>
@@ -292,23 +143,13 @@ $(function () {
         var TypeID = $(this).attr('data-id');
         $(this).addClass('active').siblings().removeClass('active');
         var detail = $(".detailed");
-        $(".detailed").children().remove();
-        detail.append("<h1>" + data.list[i].TypeName + "</h1><div class=\"line\"></div><p>" + data.list[i].TypeDesc + "</p><span class=\"img1\"><img src=\"" + data.list[i].UpLoadID + "\" alt=\"\"></span><a href=\"/solve/index.aspx?TypeID=" + data.list[i].TypeID + "\" class=\"more\" target=\"_blank\">MORE</a><div class=\"text-bg\"><img src=\"image/text1.png\" alt=\"\"></div>");
-        $.ajax({
-            url: "ashx/gettype.ashx?TypeID=" + TypeID,
-            type: "get",
-            dataType: "json",
-            success: function (data) {
-                if (data.errcode == 0) {
-                    for (var i = 0; i < data.list.length; i++) {
-                        detail.append("<h1>" + data.list[i].TypeName + "</h1><div class=\"line\"></div><p>" + data.list[i].TypeDesc + "</p><span class=\"img1\"><img src=\"" + data.list[i].UpLoadID + "\" alt=\"\"></span><a href=\"/solve/index.aspx?TypeID=" + data.list[i].TypeID + "\" class=\"more\" target=\"_blank\">MORE</a><div class=\"text-bg\"><img src=\"image/text1.png\" alt=\"\"></div>");
-                    }
-                } else {
-                    alertBox(data.errmsg);
-                    //location.href = history.back();
-                }
+        detail.removeClass("detailHidden");
+        detail.removeClass("detailShow");
+        detail.each(function(){
+            if ($(this).attr('data-value') == TypeID) {
+                $(this).addClass("detailShow").siblings().addClass("detailHidden");
             }
-        });
+        }); 
     });
 });
     </script>

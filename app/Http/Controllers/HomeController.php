@@ -54,13 +54,19 @@ class HomeController extends Controller
         $data = [];
         foreach($recommendItems as $recommendItem) {
             $positionId = $recommendItem->position_id;
-            $key = $positionItems[$positionId];
+            $key = $positionItems[$positionId]->key;
             $data[$key][] = $recommendItem;
+        }
+
+        $positions = [];
+        foreach($positionItems as $positionItem) {
+            $positions[$positionItem->key] = $positionItem;
         }
 
         $data = [
             'topic' => $topic,
             'data' => $data,
+            'positions' => $positions,
         ];
 
         return view('home/index', $data);
