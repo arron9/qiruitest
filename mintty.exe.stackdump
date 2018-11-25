@@ -1,0 +1,8 @@
+Exception: STATUS_STACK_OVERFLOW at eip=0040A63C
+eax=00032520 ebx=005EE860 ecx=000FD163 edx=005EE852 esi=005EE000 edi=FFC3D520
+ebp=0022C548 esp=0022C520 program=C:\Program Files\Git\usr\bin\mintty.exe, pid 7760, thread 
+cs=001B ds=0023 es=0023 fs=003B gs=0000 ss=0023
+Stack trace:
+Frame     Function  Args
+0022C548  0040A63C (7FD913A2, 000FD163, 00000000, 0022C5B8)
+End of stack trace
