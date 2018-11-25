@@ -67,7 +67,7 @@ function search() {
             <img class="icon1" src="../image/icon/home.png" alt="">
             <a href="/">首页</a>
             <img class="icon1" src="../image/icon/next.png" alt="">
-            <a href="/product/product153.html">{{$topicName}}</a>
+            <a href="/product.html">{{$topicName}}</a>
             <img class="icon1" src="../image/icon/next.png" alt="">
             <a href="/product/{{$type}}{{$route->id}}.html" class="text">{{$route->name}}</a>
             </p>

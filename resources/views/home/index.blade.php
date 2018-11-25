@@ -116,7 +116,30 @@
                 </li>
             @endforeach
             </ul>
-        </div>
+            <div class="swiper-container hrr">
+                <div class="swiper-wrapper">
+                    @foreach($data['product'] as $key => $product)
+                        <a href="{{$product['target_url']}}" target="_blank" class="swiper-slide li transition">
+                            <div class="num">{{$key+1}}</div>
+                            <div class="le"></div>
+                            <div class="ri"></div>
+                            <h2>{{$product['title']}}</h2>
+                            <p class="text"></p>
+                            <span class="icon">
+                                <img class="one" src="image/icon4.png" alt="">
+                                <img class="two" src="image/icon6.png" alt="">
+                            </span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+                <div class="left-icon">
+                    <img src="image/icon-left.png" alt="">
+                </div>
+                <div class="right-icon">
+                    <img src="image/icon-right.png" alt="">
+                </div>
+            </div>
         <div class="person">
             <img src="image/person.png" alt="">
         </div>
