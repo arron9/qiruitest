@@ -97,11 +97,11 @@ function search() {
                 <ul class="num-list" style="width: 45px; margin-left: -17.5px;">
                     <div id="paging1_plHave" class="pagectrl">
                         <!--頁碼-->
-                        <li><a href="download-10-1.html">&lt;</a></li>
+                        <li><a href="/product/product{{$categoryId}}.html?page={{$currentpage-1 <= 0?1:$currentpage-1}}">&lt;</a></li>
                         @for($i = 1; $i <= $pages; $i++)
                         <li class="{{$currentpage == $i?'active':''}}"><a href="/product/product{{$categoryId}}.html?page={{$i}}" class="cur">{{$i}}</a></li> 
                         @endfor
-                        <li><a href="download-10-3.html">&gt;</a></li>
+                        <li><a href="/product/product{{$categoryId}}.html?page={{$currentpage >= $pages?$pages:$currentpage+1}}">&gt;</a></li>
                         <!--頁碼-->
                     </div>
                     <div class="clear"></div>
