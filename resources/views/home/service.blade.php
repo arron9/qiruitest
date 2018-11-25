@@ -16,12 +16,11 @@
             </div>
             <div class="product-content">
                 <p class="route">
-                    <img class="icon1" src="../image/product/icon1.png" alt="">
-                    <a href="/">首页</a>
-                    <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/service.html">{{$topicName}}</a>
-                    <img class="icon1" src="../image/product/icon2.png" alt="">
-                    <a href="/service/service{{$route->id}}.html" class="text">{{$route->name}}</a>
+                <img class="icon1" src="../image/icon/home.png" alt="">
+                <a href="/">首页</a>
+                <img class="icon1" src="../image/icon/next.png" alt="">
+                <a href="/service.html">{{$topicName}}</a>
+                <img class="icon1" src="../image/icon/next.png" alt="">
                 </p>
                 <div class="business-content">
                     <?php

@@ -22,11 +22,11 @@
 
         <div class="product-content">
             <p class="route">
-            <img class="icon1" src="../image/product/icon1.png" alt="">
+            <img class="icon1" src="../image/icon/home.png" alt="">
             <a href="/">首页</a>
-            <img class="icon1" src="../image/product/icon2.png" alt="">
+            <img class="icon1" src="../image/icon/next.png" alt="">
             <a href="/about.html">{{$topicName}}</a>
-            <img class="icon1" src="../image/product/icon2.png" alt="">
+            <img class="icon1" src="../image/icon/next.png" alt="">
             <a href="/about/about{{$route->id}}.html" class="text">{{$route->name}}</a>
             </p>
             <div class="about-content">

@@ -25,7 +25,7 @@
                 <div class="title {{$category['id'] == $categoryId || $isActive ?'active':''}}">
                     <span class="title-link" onclick="location.href='/product/type{{$category['id']}}.html'">{{$category['name']}}</span>
                     <span class="right-img">
-                        <img src="../image/product/fold.png" alt="">
+                        <img src="../image/icon/fold.png" alt="">
                     </span>
                     <input type="hidden" name="AsideLeft$rptProduct$ctl00$ProID" id="AsideLeft_rptProduct_ctl00_ProID" value="6" />
                     <ul>
@@ -64,11 +64,11 @@ function search() {
 
         <div class="product-content">
             <p class="route">
-            <img class="icon1" src="../image/product/icon1.png" alt="">
+            <img class="icon1" src="../image/icon/home.png" alt="">
             <a href="/">首页</a>
-            <img class="icon1" src="../image/product/icon2.png" alt="">
+            <img class="icon1" src="../image/icon/next.png" alt="">
             <a href="/product/product153.html">{{$topicName}}</a>
-            <img class="icon1" src="../image/product/icon2.png" alt="">
+            <img class="icon1" src="../image/icon/next.png" alt="">
             <a href="/product/{{$type}}{{$route->id}}.html" class="text">{{$route->name}}</a>
             </p>
             @if($type == 'type')

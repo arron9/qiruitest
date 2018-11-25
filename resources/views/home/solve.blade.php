@@ -18,7 +18,7 @@
                 ?>
                 <div class="title {{$category['id'] == $categoryId || $isActive ?'active':''}}">
                     <span class="right-img">
-                        <img src="../image/product/fold.png" alt="">
+                        <img src="../image/icon/fold.png" alt="">
                     </span>
                     <a class="type title-link" href="/{{$topic}}/{{$topic}}{{$category['id']}}.html" data-id="{{$category['id']}}">{{$category['name']}}</a>
                     <ul>
@@ -36,11 +36,11 @@
 
         <div class="product-content">
             <p class="route">
-                <img class="icon1" src="../image/product/icon1.png" alt="">
+                <img class="icon1" src="../image/icon/home.png" alt="">
                 <a href="/">首页</a>
-                <img class="icon1" src="../image/product/icon2.png" alt="">
+                <img class="icon1" src="../image/icon/next.png" alt="">
                 <a href="/solve.html">{{$topicName}}</a>
-                <img class="icon1" src="../image/product/icon2.png" alt="">
+                <img class="icon1" src="../image/icon/next.png" alt="">
                 <a href="/solve/{{$routeTopic}}{{$route->id}}.html" class="text" data-id="{{$route->id}}" id="typeid">{{$route->name}}</a>
             </p>
             @if($type == 'parent')

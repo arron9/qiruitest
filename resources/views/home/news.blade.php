@@ -16,9 +16,9 @@
         </div>
         <div class="product-content">
             <p class="route">
-                <img class="icon1" src="../image/product/icon1.png" alt="">
+                <img class="icon1" src="../image/icon/home.png" alt="">
                 <a href="/">首页</a>
-                <img class="icon1" src="../image/product/icon2.png" alt="">
+                <img class="icon1" src="../image/icon/next.png" alt="">
                 <a href="/news/{{$type}}{{$route->id}}.html" class="type" data-id="{{$route->id}}">{{$route->name}}</a>
             </p>
             @if($type == 'news')
