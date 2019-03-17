@@ -42,7 +42,8 @@ class RecommendController extends Controller
 
                 return $text;
             });
-            $grid->column('cover', '图片');
+
+            $grid->cover()->image('/uploads/', 100, 100);
             $grid->column('weight', '权重');
             $grid->column('created_at', '创建时间');
             $grid->column('updated_at', '更新时间');
@@ -116,7 +117,7 @@ class RecommendController extends Controller
                 // }
             /* })->ajax("/admin/recommend/articles"); */
 
-            $form->image('cover', '图片')->move('public/uploads/images/');
+            $form->image('cover', '图片')->move('/uploads/images/');
             $form->textarea('intro', '简介')->rows(10);
             $form->text('target_url', '链接');
 

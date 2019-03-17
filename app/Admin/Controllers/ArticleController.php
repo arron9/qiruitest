@@ -29,7 +29,7 @@ class ArticleController extends Controller
             });
 
             $grid->column('title', '标题');
-            $grid->column('cover', '封面');
+            $grid->cover()->image('/uploads/', 100, 100);
 
             $grid->type('类型')->display(function ($type) {
                 switch ($type) {
@@ -123,7 +123,7 @@ class ArticleController extends Controller
             $form->text('title', '标题');
             $form->text('alias', '副标题');
 
-            $form->image('cover', '封面')->move('public/uploads/images/');
+            $form->image('cover', '封面')->move('/uploads/images/');
             $form->textarea('desc', '简介')->rows(10);
 
             $directors = $this->getCategories();

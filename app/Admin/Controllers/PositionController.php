@@ -22,6 +22,7 @@ class PositionController extends Controller
             $grid->id('id')->sortable();
             $grid->column('name', '名称');
             $grid->column('key', '标识符');
+            $grid->cover()->image('/uploads/', 100, 100);
 
             $pids = array_merge(['/根目录'],Position::getPositions());
             $grid->pid('父推荐位')->display(function($pid) use($pids) {
@@ -101,7 +102,7 @@ class PositionController extends Controller
             $directors = array_merge($directors, Position::getPositions());
             $form->select('pid', '父推荐位')->options($directors);
 
-            $form->image('cover', '封面')->move('public/uploads/images/');
+            $form->image('cover', '封面')->move('/uploads/images/');
             $form->textarea('desc', '简介')->rows(10);
             $form->text('url', '链接');
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="Keywords" content="骐锐科技-Sample上下变频器，Venable频率响应分析仪，Boonton射频微波功率计，Noisecom噪声信号发生器，Transmile多功能校准仪,Anapico相噪分析仪" />
-    <meta name="Description" content="骐锐科技（上海）有限公司专业提供Sample上|下变频器，Venable频率响应分析仪，Boonton射频微波功率计，Noisecom噪声信号发生器，Transmile多功能校准仪,Anapico相噪分析仪等电子测试测量仪器。" />
+    <meta name="Keywords" content="骐锐科技-qirui上下变频器，Venable频率响应分析仪，Boonton射频微波功率计，Noisecom噪声信号发生器，Transmile多功能校准仪,Anapico相噪分析仪" />
+    <meta name="Description" content="骐锐科技（上海）有限公司专业提供qirui上|下变频器，Venable频率响应分析仪，Boonton射频微波功率计，Noisecom噪声信号发生器，Transmile多功能校准仪,Anapico相噪分析仪等电子测试测量仪器。" />
     <meta charset="UTF-8" />
     <meta name="baidu-site-verification" content="H9npxnQckW" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
@@ -23,7 +23,7 @@
         
 <div class="header">
     <a href="/" class="logo">
-        <img src="/image/logo.png" alt="">
+        <img src="/image/qirui_logo.jpg"  alt="">
     </a>
     <div class="nav-box">
         <ul class="nav">
@@ -54,9 +54,10 @@
             <img src="/image/icon-open.png" alt="">
         </div>
     </div>
-    <img src="../image/QR_code.jpg" alt="" class="QR_code">
+    <img src="../image/qq.jpg" alt="" class="QR_code">
     <div class="head-tel">
-        咨询电话：<br>400-621-8906
+        咨询电话：021-51299143 <br>
+        手机：18516146837
     </div>
 </div>
 
@@ -88,11 +89,11 @@
             </li>
         @endforeach
 	<li>
-            <img src="../image/QR_code.jpg" alt="" class="QR_code">
+            <img src="../image/qq.jpg" alt="" class="QR_code">
         </li>
 	<li>
             <div class="head-tel">
-        	咨询电话：<br>400-621-8906
+        	咨询电话：<br>021-51299143
     	    </div>
         </li>
     </ul>
@@ -120,21 +121,21 @@
                             <img src="../image/icon-one.png" alt="">
                         </a>
                         <p class="icon-title">电话</p>
-                        <p class="num">400-621-8906</p>
+                        <p class="num">021-51299143</p>
                     </div>
                     <div class="pull-list marketing">
                         <a class="img" href="tencent://message/?uin=2578940051&Site=网站地址&Menu=yes">
                             <img src="../image/icon-three.png" alt="">
                         </a>
-                        <p class="icon-title">微信联系</p>
-                        <p><img src="../image/QR_code.jpg" alt=""></p>
+                        <p class="icon-title">QQ联系</p>
+                        <p><img src="../image/qq.jpg" alt=""></p>
                     </div>
                     <div class="pull-list marketing">
                         <a class="img" href="#">
                             <img src="../image/icon-two.png" alt="">
                         </a>
                         <p class="icon-title">电子邮件</p>
-                        <p class="">marketing@samplesci.com</p>
+                        <p class="">sales@qiruisystem.cn</p>
 			<p>欢迎留言咨询，请留下您的联系方式</p>
                     </div>
                 </div>
@@ -147,17 +148,16 @@
     <div class="footer-content">
         <div class="copyright">
             <div class="logo">
-                <img src="../image/logo1.png" alt="">
+                <img src="../image/qirui_logo.jpg" style="width: 50%; height: 50%;" alt="">
             </div>
             <div class="line"></div>
             <p>Copyright © 2017 Copyright 科技版权所有</p>
-	    <img src="../image/QR_code.jpg" alt="" class="QR_code">
+	    <img src="../image/qq.jpg" alt="" class="QR_code">
         </div>
         <div class="footer-text">
             <div class="text">
                 <!--<img src="../image/footer-text.png" alt="">-->
-                <p class="cn">驱动创新，提供方案</p>
-                <p class="en">Driving Progress — Finding Solutions</p>
+                <p class="cn">行业领先，系统解决方案</p>
             </div>
             <ul class="list">
                     <li>
@@ -180,11 +180,11 @@
             </ul>
         </div>
         <div class="contact-css">
-            <p>电话：400-621-8906</p>
-            <p>邮箱：marketing@samplesci.com</p>
+            <p>电话：021-51299143</p>
+            <p>邮箱：sales@qiruisystem.cn</p>
         </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" style="display: none">
         <div class="link">
             <span class="cn">友情链接：</span>
             

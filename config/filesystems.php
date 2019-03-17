@@ -58,7 +58,7 @@ return [
         'admin' => [
             'driver' => 'local',
             'root' => public_path('uploads'),
-            'visibility' => 'public',
+            'visibility' => '/',
             'url' => env('APP_URL') . DIRECTORY_SEPARATOR . 'uploads',
         ],
 

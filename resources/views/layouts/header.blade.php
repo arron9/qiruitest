@@ -34,7 +34,7 @@
 
 <div class="header">
     <a href="../index.aspx" class="logo">
-        <img src="/image/logo.png" alt="">
+        <img src="/image/logo.jpg?v=111" alt="">
     </a>
     <div class="nav-box">
         <ul class="nav">
